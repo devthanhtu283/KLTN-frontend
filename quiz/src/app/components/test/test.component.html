@@ -1,0 +1,118 @@
+<h1>Bài thi {{ title }}</h1>
+<main class="overflow-hidden">
+  <div *ngIf="!showResultPage">
+    <div class="step-number">
+      <div class="step-number-inner">
+        Câu hỏi <span id="activeStep">{{ now + 1 }}</span
+        >/{{ totalSteps }}
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="tab-100 order-c col-md-5 p-relative">
+          <div class="side-img">
+            <img src="assets/images/2 - Copy.png" height="400" alt="side-img" />
+          </div>
+
+      
+          <div class="step-bar">
+            <div *ngFor="let step of steps; let i = index" class="bar">
+              <div [class.w-100]="i <= now" class="fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-100 col-md-7">
+          <div class="show-section wrapper">
+            <section *ngIf="now < steps.length">
+              <h2 class="q-heading">{{ getCurrentStep().content }}</h2>
+
+              <div class="form-inner">
+           
+                <div *ngIf="getCurrentStep().questionType === 'choiceAnswer'">
+                  <div
+                    *ngFor="let option of getCurrentStep().answers"
+                    class="bounce-left radio-field"
+                  >
+                    <input
+                      class="checkmark"
+                      type="radio"
+                      [name]="'op' + getCurrentStep().id"
+                      [value]="option.content"
+                      [(ngModel)]="selectedOptions[now + 1]"
+                      (click)="onOptionSelected(now + 1, option.content)"
+                    />
+                    <label>{{ option.content }}</label>
+                  </div>
+                </div>
+
+
+                <div *ngIf="getCurrentStep().questionType === 'textAnswer'">
+                  <textarea
+                    class="form-control"
+                    [(ngModel)]="textAnswers[now + 1]"
+                    (input)="
+                      onTextAnswerChange(now + 1, $any($event.target).value)
+                    "
+                    placeholder="Enter your answer here..."
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="next-prev">
+                <button *ngIf="now > 0" (click)="prevStep()">
+                  Câu trước
+                </button>
+                <button *ngIf="now < totalSteps - 1" (click)="nextStep()">
+                  Câu sau
+                </button>
+                <button
+                  *ngIf="now === totalSteps - 1"
+                  (click)="calculateScore()"
+                >
+                  Hoàn thành
+                </button>
+              </div>
+
+              <div id="error" *ngIf="errorMsg" class="alert alert-danger">
+                {{ errorMsg }}
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="showResultPage" >
+    <div class="result_inner">
+      <h2 class="result_title">Knowledge Check</h2>
+    <div class="u_result">
+        <div class="u_score">Your Score:</div>
+        <div class="u_prcnt">{{ userScore }} / {{ maxScore }}</div>
+        <span class="u_points">{{ userScore }} Points</span>
+    </div>
+    <div class="p_result">
+        <div class="p_score">Passing Score:</div>
+        <div class="p_prcnt">{{ userScore / maxScore * 100}}%</div>
+       
+    </div>
+
+      <div class="result_show">
+        <h2>Result</h2>
+        <div class="pass_check" *ngIf="isPassed()">You Passed!</div>
+        <div class="pass_check" *ngIf="!isPassed()">You did not Pass</div>
+     
+        <h3>Your Answers</h3>
+        <div *ngFor="let step of steps; let i = index" class="text-answer">
+          <div *ngIf="step.questionType === 'textAnswer'">
+            <strong>Question {{ i + 1 }}:</strong> {{ step.content }}<br />
+            <strong>Your Answer:</strong> {{ textAnswers[i + 1] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,13 @@
+<div class="code-container">
+  <div class="code-box">
+    <h2>Enter Test Code</h2>
+    <form (ngSubmit)="onSubmitCode()">
+      <div class="input-box">
+        <input type="text" name="testCode" required [(ngModel)]="testCode" placeholder="Enter your test code" />
+      </div>
+      <div class="button-box">
+        <button type="submit" class="submit-btn">Submit Code</button>
+      </div>
+    </form>
+  </div>
+</div>
