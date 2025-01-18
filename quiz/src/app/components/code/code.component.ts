@@ -20,8 +20,8 @@ export class CodeComponent {
   onSubmitCode() {
     this.testService.findTestByCode(this.testCode).then(
       res => {
-        console.log(res);
-        this.router.navigate(['/test', res.code]);
+        console.log(res.data.code);
+        this.router.navigate(['/test', res.data.code]);
 
 
       },

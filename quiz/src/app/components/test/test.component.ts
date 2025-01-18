@@ -39,8 +39,8 @@ export class TestComponent implements OnInit{
         
         this.testService.findTestByCode(this.code).then(
             res => {
-                this.title = res.title;
-                this.questionService.findByTestID(res.id).then(
+                this.title = res.data.title;
+                this.questionService.findByTestID(res.data.id).then(
                   result => {
                       this.steps = result;
                       console.log(result);
@@ -125,6 +125,6 @@ export class TestComponent implements OnInit{
   
 
     isPassed() {
-      return this.userScore >= this.passingScore;
+      return (this.userScore/this.maxScore * 100) >= this.passingScore;
     }
 }
