@@ -10374,3 +10374,153 @@ input::placeholder {
   color: var(--rts-button-3);
   font-weight: 600;
 }
+/* styles.css chatbot*/
+/* Nút mở chat */
+.chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000; /* Đảm bảo nút luôn hiển thị trên cùng */
+}
+
+/* Popup chat */
+.chat-popup {
+  display: none; /* Ẩn popup mặc định */
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Đảm bảo popup hiển thị trên các phần tử khác */
+}
+
+/* Hiển thị popup khi có class 'active' */
+.chat-popup.active {
+  display: block;
+}
+
+/* Header của popup chat */
+.chat-header {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Nút đóng popup */
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Phần thân chat */
+.chat-body {
+  padding: 10px;
+  height: 500px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+/* Tin nhắn */
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Khoảng cách giữa các tin nhắn */
+}
+
+/* Tin nhắn của người dùng */
+.user-message {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+/* Tin nhắn của bot */
+.bot-message {
+  align-self: flex-start;
+  background-color: #e1e1e1;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+/* Phần chân chat */
+.chat-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+}
+
+/* Ô nhập tin nhắn */
+#chatInput {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Nút gửi tin nhắn */
+#sendButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#sendButton:hover {
+  background-color: #0056b3; /* Hiệu ứng hover */
+}
+/* Hiển thị "Đang nhập..." */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-style: italic;
+  color: #666;
+}
+
+.typing-indicator span {
+  margin-left: 10px;
+}
+input.glass {
+  height: 30px;
+}
+div.result{
+  color: red;
+}
+.leaflet-top.leaflet-right{
+  background-color: white;
+}
+button.reset{
+  height: 20px;
+  width: 20px;
+}
+div.results.active{
+  color: black;
+  cursor: pointer;
+}

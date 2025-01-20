@@ -405,3 +405,28 @@
     <button type="button" class="rts__back__top" id="rts-back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
+    <button id="chatButton" class="chat-button">Chat với AI hỗ trợ</button>
+
+    <!-- Popup chat -->
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+          <span>Chat với AI hỗ trợ</span>
+          <button id="closeButton" class="close-button">&times;</button>
+        </div>
+        <div class="chat-body">
+          <div id="chatMessages" class="chat-messages">
+            <!-- Hiển thị tin nhắn -->
+            <div *ngFor="let msg of chatMessages" [class.user-message]="msg.isUser" [class.bot-message]="!msg.isUser">
+              {{ msg.text }}
+            </div>
+            <!-- Hiển thị "Đang nhập..." khi isTyping là true -->
+            <div *ngIf="isTyping" class="typing-indicator">
+              <span>Đang nhập...</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat-footer">
+          <input type="text" id="chatInput" placeholder="Nhập tin nhắn của bạn..." [(ngModel)]="chatInput" (keypress)="onKeyPress($event)" />
+          <button id="sendButton" (click)="sendMessage()">Gửi</button>
+        </div>
+      </div>

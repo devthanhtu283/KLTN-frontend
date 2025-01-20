@@ -612,3 +612,43 @@
   };
   rtsJs.m();
 })(jQuery, window);
+
+// script.js chatbot
+document.addEventListener('DOMContentLoaded', function() {
+  const chatButton = document.getElementById('chatButton');
+  const chatPopup = document.getElementById('chatPopup');
+  const closeButton = document.getElementById('closeButton');
+  const sendButton = document.getElementById('sendButton');
+  const chatInput = document.getElementById('chatInput');
+  const chatMessages = document.getElementById('chatMessages');
+
+  // Mở popup chat
+  chatButton.addEventListener('click', function() {
+      chatPopup.style.display = 'block';
+  });
+
+  // Đóng popup chat
+  closeButton.addEventListener('click', function() {
+      chatPopup.style.display = 'none';
+  });
+
+  // // Gửi tin nhắn
+  // sendButton.addEventListener('click', function() {
+  //     const message = chatInput.value.trim();
+  //     if (message !== '') {
+  //         const messageElement = document.createElement('div');
+  //         messageElement.textContent = message;
+  //         messageElement.classList.add('message');
+  //         chatMessages.appendChild(messageElement);
+  //         chatInput.value = '';
+  //         chatMessages.scrollTop = chatMessages.scrollHeight;
+  //     }
+  // });
+
+  // // Gửi tin nhắn khi nhấn Enter
+  // chatInput.addEventListener('keypress', function(e) {
+  //     if (e.key === 'Enter') {
+  //         sendButton.click();
+  //     }
+  // });
+});

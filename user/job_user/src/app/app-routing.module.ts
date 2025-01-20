@@ -8,6 +8,7 @@ import { EmployerDashboardComponent } from './components/employer/dashboard/empl
 import { EmployerChangePasswordComponent } from './components/employer/change-password/employer-change-password.component';
 import { CandidateChangePasswordComponent } from './components/candidate/change-password/candidate-change-password.component';
 import { CandidateProfilePasswordComponent } from './components/candidate/profile/candidate-profile.component';
+import { MapComponent } from './components/test/map.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: "forgot-password",
     component: ForgotPasswordComponent,
+  },
+  {
+    path: "map",
+    component: MapComponent,
   },
 ];
 
