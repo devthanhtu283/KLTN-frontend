@@ -184,7 +184,7 @@
                             <div class="author__image">
                                 <!-- <img src="assets/img/dashboard/proifle.svg" alt=""> -->
                                 <img 
-                                    [src]="avatarUrl"
+                                    [src]="getImageUrl(avatarUrl)  || 'assets/img/dashboard/no-avatar.jpg'"
                                     alt="Avatar">
                             </div>
                             <div class="select__image">

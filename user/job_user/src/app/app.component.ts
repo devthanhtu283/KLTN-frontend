@@ -35,6 +35,8 @@ export class AppComponent implements OnInit {
 
   async clearData(): Promise<void> {
     localStorage.removeItem('user');
+    localStorage.removeItem('candidate');
+    localStorage.removeItem('employer');
     this.user = null;
     this.cdr.detectChanges();
     await this.router.navigate(['/']);

@@ -210,61 +210,57 @@ export class HomeComponent implements OnInit{
   }
 
   // Hàm đăng nhập
- login() {
-    // Điền đầy đủ thông tin
-    if(!this.loginForm.valid) {
+  async login() {
+    if (!this.loginForm.valid) {
       this.messageService.add({
         severity: "error",
-        summary: "Đăng kí thất bại",
+        summary: "Đăng nhập thất bại",
         detail: "Vui lòng điền đầy đủ thông tin."
       });
-      return; // Ngăn không cho tiếp tục nếu mật khẩu không khớp
+      return;
     }
-
-    var user = {
+  
+    const user = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-    this.userService.login(user).then(
-      res => {
-        if (res.status === true) {
-          this.userService.findByEmail(this.loginForm.value.email).then(
-            res => {   
-              this.messageService.add({
-                severity: "success",
-                summary: "Đăng nhập thành công",
-                detail: "Bạn đã đăng nhập vào hệ thống thành công."
-              });
-              localStorage.setItem('user', JSON.stringify(res['user']));
-              setTimeout(() => {
-                if(res['user'].user_type === 1) {
-                  window.location.href = '/candidate-dashboard';
-                  localStorage.setItem('candidate', JSON.stringify(this.userService.findByIdSeeker(this.candidate.id)));
-                } 
-                if(res['user'].user_type === 2) {
-                  window.location.href = '/employer-dashboard';
-                  localStorage.setItem('employer', JSON.stringify(this.userService.findByIdEmployer(this.employer.id)));
-                }
-                
-              }, 1000);
-            },
-            err => {
-              this.messageService.add({severity: 'error', summary: 'Thất bại', detail: 'Không thể lấy thông tin người dùng'});
-            }
-          );
-        } else {
-          // Thông báo khi đăng nhập thất bại
-          this.messageService.add({severity: 'error', summary: 'Đăng nhập thất bại', detail: 'Thông tin đăng nhập không chính xác.'});
+  
+    try {
+      const loginResponse = await this.userService.login(user);
+      if (loginResponse.status === true) {
+        const userInfo = await this.userService.findByEmail(this.loginForm.value.email);
+        this.messageService.add({
+          severity: "success",
+          summary: "Đăng nhập thành công",
+          detail: "Bạn đã đăng nhập vào hệ thống thành công."
+        });
+  
+        localStorage.setItem('user', JSON.stringify(userInfo['user']));
+  
+        if (userInfo['user'].user_type === 1) {
+          const candidateInfo = await this.userService.findByIdSeeker(userInfo['user'].id);
+          localStorage.setItem('candidate', JSON.stringify(candidateInfo));
+          window.location.href = '/candidate-dashboard';
+        } else if (userInfo['user'].user_type === 2) {
+          const employerInfo = await this.userService.findByIdEmployer(userInfo['user'].id);
+          localStorage.setItem('employer', JSON.stringify(employerInfo));
+          window.location.href = '/employer-dashboard';
         }
-      },
-      err => {
-        // Xử lý lỗi kết nối hoặc server
-        console.error(err);
-        this.messageService.add({severity: 'error', summary: 'Lỗi kết nối', detail: 'Đã xảy ra lỗi khi kết nối tới máy chủ. Vui lòng thử lại sau.'});
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Đăng nhập thất bại',
+          detail: 'Thông tin đăng nhập không chính xác.'
+        });
       }
-    );
-    
-
+    } catch (error) {
+      console.error(error);
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Lỗi kết nối',
+        detail: 'Đã xảy ra lỗi khi kết nối tới máy chủ. Vui lòng thử lại sau.'
+      });
+    }
   }
 
 

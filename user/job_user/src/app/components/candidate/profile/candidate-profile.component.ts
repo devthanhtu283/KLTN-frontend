@@ -19,7 +19,8 @@ export class CandidateProfilePasswordComponent implements OnInit {
     address: string;
     gender: string;
     avatar: string;
-    avatarUrl: string = 'assets/img/dashboard/profile.svg';
+    photo: File;
+    avatarUrl: string = 'assets/img/dashboard/no-avatar.jpg';
 
     constructor(
         private formBuilder: FormBuilder,
@@ -48,6 +49,7 @@ export class CandidateProfilePasswordComponent implements OnInit {
             this.router.navigate(['/']); // Điều hướng lại nếu không tìm thấy user
         } else {
             this.user = user; // Gán dữ liệu người dùng
+            console.log(candidate);
             // Khởi tạo form với dữ liệu từ candidate nếu có
             this.candidateForm = this.formBuilder.group({
                 fullName: [candidate?.fullName || ''],
@@ -78,11 +80,13 @@ export class CandidateProfilePasswordComponent implements OnInit {
             gender: this.candidateForm.value.gender,
             status: true,
             dob: this.datePipe.transform(this.candidateForm.value.dob, 'dd/MM/yyyy'),
-            updatedAt: this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss'),
-            avatar: this.candidateForm.value.avatar
+            updatedAt: null,
+            avatar: null
        };
-       console.log(this.seeker.updatedAt);
-       this.userService.updateCandidate(this.seeker).then(
+       var formData = new FormData();
+       formData.append('file', this.photo);
+       formData.append('seekerDTO', JSON.stringify(this.seeker));
+       this.userService.updateCandidate(formData).then(
             (res) => {
                 this.messageService.add({
                     severity: "success",
@@ -90,7 +94,7 @@ export class CandidateProfilePasswordComponent implements OnInit {
                     detail: "Bạn đã cập nhật thông tin thành công."
                 });
                 localStorage.removeItem('candidate');
-                localStorage.setItem('candidate', JSON.stringify(this.seeker));
+                localStorage.setItem('candidate', JSON.stringify(res.data));
                 this.router.navigate(['/candidate-profile']);
             },
             (err) => {
@@ -104,22 +108,32 @@ export class CandidateProfilePasswordComponent implements OnInit {
        )
     }
 
-    onFileChange(event: Event) {
-        const input = event.target as HTMLInputElement;
-        if (input && input.files && input.files[0]) {
-            const file = input.files[0];
+    
+
+    onFileChange(evt: any) {
+        const file = evt.target.files[0]; // Lấy tệp đã chọn
+        if (file) {
+            this.photo = file; // Lưu tệp để gửi lên server
+    
+            // Đọc tệp và cập nhật avatarUrl
             const reader = new FileReader();
-
-            reader.onload = () => {
-                // Gán URL của ảnh vào biến avatarUrl thay vì FormControl
-                this.avatarUrl = reader.result as string;
-                console.log("ảnh ava: " + this.avatarUrl);
+            reader.onload = (e: any) => {
+                this.avatarUrl = e.target.result; // Cập nhật avatarUrl với dữ liệu hình ảnh
             };
-
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file); // Đọc tệp dưới dạng URL
         }
     }
     
+    getImageUrl(avatarPath: string): string {
+        if (!avatarPath) {
+            return 'assets/img/dashboard/no-avatar.jpg'; // Hình ảnh mặc định
+        }
+        // Kiểm tra nếu avatarPath là một URL tạm thời (data:image hoặc blob:)
+        if (avatarPath.startsWith('data:image') || avatarPath.startsWith('blob:')) {
+            return avatarPath; // Sử dụng trực tiếp URL tạm thời
+        }
+        return `http://localhost:8087/uploads/${avatarPath}`; // Thêm tiền tố nếu là đường dẫn tương đối
+    }
 
     setDefaultAvatar(event: Event) {
         (event.target as HTMLImageElement).src = 'assets/img/dashboard/profile.svg';

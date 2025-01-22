@@ -44,14 +44,18 @@ export class UserService{
         return await lastValueFrom(this .httpClient.put(this.baseUrlService.getBaseUrl()
         + 'user/update' , user));
     }
+    async test(form: FormData) : Promise<any>{
+        return await lastValueFrom(this .httpClient.post(this.baseUrlService.getBaseUrl()
+        + 'user/upload', form));
+    }
 
     getAccount() {
         return this.userSubject.asObservable();
     }
 
-    async updateCandidate(seeker: Seeker): Promise<any> {
+    async updateCandidate(formData: FormData): Promise<any> {
         return await lastValueFrom(this.httpClient.post(this.baseUrlService.getBaseUrl()
-        + 'seeker/save', seeker));
+        + 'seeker/save', formData));
     } 
 
     async findByIdSeeker(id: number): Promise<any> {
@@ -68,4 +72,12 @@ export class UserService{
         return await lastValueFrom(this.httpClient.get(this.baseUrlService.getBaseUrl()
         + 'employer/findById/' + id));
     }
+
+    async uploadFile(file: File): Promise<any> {
+        const formData = new FormData();
+        formData.append('file', file);
+        return await lastValueFrom(this.httpClient.post(this.baseUrlService.getBaseUrl()
+        + 'seeker/upload', formData, { responseType: 'text' }));
+    } 
+
 }
