@@ -96,7 +96,6 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
             console.log(`Gửi mã xác thực đến ${this.email}`);
             this.userService.findByEmail(this.email).then(
                 (res) => {
-                    console.log(res);
                     if (res != null) {
                         const code = Math.floor(100000 + Math.random() * 900000).toString(); // Mã 6 chữ số
                         const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 phút
@@ -104,9 +103,9 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
                         const emailContent = `Mã xác nhận của bạn là ${code}. Mã sẽ hết hạn sau 5 phút.`;
                         this.verifyCode = code;
                         this.expiredCode = expiresAt;
-                        var user = res["user"] as User;
+                        var user = res["data"] as User;
                         this.userUpdated = user;
-                        console.log(this.userUpdated.username);
+                        console.log(this.userUpdated);
                         // Gửi email xác thực
                         const email = {
                             from: 'atun123456789cu@gmail.com',
@@ -157,9 +156,9 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
                     password: this.newPassword,
                     email: this.userUpdated.email,
                     securityCode: this.userUpdated.securityCode,
-                    status: true,
+                    status: 1,
                     created: this.userUpdated.created,
-                    user_type: this.userUpdated.user_type
+                    userType: this.userUpdated.userType
                 }
                 this.userService.update(user).then(
                     (res) => {
@@ -224,10 +223,10 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
             username: this.registerCandidateForm.value.candidateName,
             email: this.registerCandidateForm.value.candidateEmail,
             password: this.registerCandidateForm.value.candidatePassword,
-            user_type: 1,
+            userType: 1,
             created: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
             securityCode: this.randomNumber.toString(),
-            status: false
+            status: 0
         };
 
         this.userService.register(this.newCandidate).then(
@@ -296,10 +295,10 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
             username: this.registerEmployerForm.value.employerName,
             email: this.registerEmployerForm.value.employerEmail,
             password: this.registerEmployerForm.value.employerPassword,
-            user_type: 2,
+            userType: 2,
             created: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
             securityCode: this.randomNumber.toString(),
-            status: false
+            status: 0
         };
 
         this.userService.register(this.newEmployer).then(

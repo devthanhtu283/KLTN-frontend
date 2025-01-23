@@ -91,10 +91,10 @@ export class HomeComponent implements OnInit{
       username: this.registerCandidateForm.value.candidateName,
       email: this.registerCandidateForm.value.candidateEmail,
       password: this.registerCandidateForm.value.candidatePassword,
-      user_type: 1,
+      userType: 1,
       created: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
       securityCode: this.randomNumber.toString(),
-      status: false
+      status: 0
     };
 
     this.userService.register(this.newCandidate).then(
@@ -164,10 +164,10 @@ export class HomeComponent implements OnInit{
       username: this.registerEmployerForm.value.employerName,
       email: this.registerEmployerForm.value.employerEmail,
       password: this.registerEmployerForm.value.employerPassword,
-      user_type: 2,
+      userType: 2,
       created: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
       securityCode: this.randomNumber.toString(),
-      status: false
+      status: 0
     };
 
     this.userService.register(this.newEmployer).then(
@@ -229,20 +229,21 @@ export class HomeComponent implements OnInit{
       const loginResponse = await this.userService.login(user);
       if (loginResponse.status === true) {
         const userInfo = await this.userService.findByEmail(this.loginForm.value.email);
+        console.log(userInfo['data']);
         this.messageService.add({
           severity: "success",
           summary: "Đăng nhập thành công",
           detail: "Bạn đã đăng nhập vào hệ thống thành công."
         });
   
-        localStorage.setItem('user', JSON.stringify(userInfo['user']));
+        localStorage.setItem('user', JSON.stringify(userInfo['data']));
   
-        if (userInfo['user'].user_type === 1) {
-          const candidateInfo = await this.userService.findByIdSeeker(userInfo['user'].id);
+        if (userInfo['data'].userType === 1) {
+          const candidateInfo = await this.userService.findByIdSeeker(userInfo['data'].id);
           localStorage.setItem('candidate', JSON.stringify(candidateInfo));
           window.location.href = '/candidate-dashboard';
-        } else if (userInfo['user'].user_type === 2) {
-          const employerInfo = await this.userService.findByIdEmployer(userInfo['user'].id);
+        } else if (userInfo['data'].userType === 2) {
+          const employerInfo = await this.userService.findByIdEmployer(userInfo['data'].id);
           localStorage.setItem('employer', JSON.stringify(employerInfo));
           window.location.href = '/employer-dashboard';
         }
