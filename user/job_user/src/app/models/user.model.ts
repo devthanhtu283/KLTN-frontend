@@ -2,20 +2,20 @@ export class User {
     id: number;
     username: string;
     password: string;
-    user_type: number;
+    userType: number;
     email: string;
     created: string;
-    status: boolean;
+    status: number;
     securityCode: string;
 }
 
 export class CreateUser {
     username: string;
     password: string;
-    user_type: number;
+    userType: number;
     email: string;
     created: string;
-    status: boolean;
+    status: number;
     securityCode: string;
 }
 
@@ -36,7 +36,7 @@ export class Employee {
     address: string;
     mapLink: string;
     amount: number;
-    status: boolean;
+    status: number;
     description: string;
     foundedIn: string;
     companyField: string;
@@ -49,7 +49,7 @@ export class Seeker {
     phone: string;
     address: string;
     dob: string;
-    status: boolean;
+    status: number;
     updatedAt: string;
     gender: string;
     avatar: string;

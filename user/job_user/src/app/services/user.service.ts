@@ -55,7 +55,7 @@ export class UserService{
 
     async updateCandidate(formData: FormData): Promise<any> {
         return await lastValueFrom(this.httpClient.post(this.baseUrlService.getBaseUrl()
-        + 'seeker/save', formData));
+        + 'seeker/update', formData));
     } 
 
     async findByIdSeeker(id: number): Promise<any> {

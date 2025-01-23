@@ -62,7 +62,7 @@ export class CandidateChangePasswordComponent implements OnInit {
       id: this.user.id,
       username: this.user.username,
       password: this.changePassCandidateForm.value.newPassword,
-      user_type: this.user.user_type,
+      userType: this.user.userType,
       email: this.user.email,
       created: this.user.created,
       status: this.user.status,
