@@ -7,7 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserService } from './services/user.service';
 import { MessagesModule } from 'primeng/messages';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BaseUrlService } from './services/baseUrl.service';
+import { BaseUrlUserService } from './services/baseUrlUser.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -48,7 +48,7 @@ import { CandidateProfilePasswordComponent } from './components/candidate/profil
   providers: [
     UserService,
     MessagesModule,
-    BaseUrlService,
+    BaseUrlUserService,
     MessageService,
     DatePipe
   ],
