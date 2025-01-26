@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../../services/user.service';
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
@@ -8,11 +8,11 @@ import { DatePipe } from '@angular/common';
 import * as $ from 'jquery';
 
 @Component({
-    templateUrl: "./home.component.html",
-    styleUrls: ['./home.component.css'],
+    templateUrl: "./seeker-home.component.html",
+    styleUrls: ['./seeker-home.component.css'],
 
   })
-export class HomeComponent implements OnInit{
+export class SeekerHomeComponent implements OnInit{
   currentForm: string = 'candidate'; // Ban đầu hiển thị form candidate
   registerCandidateForm: FormGroup;
   registerEmployerForm: FormGroup;
@@ -241,7 +241,7 @@ export class HomeComponent implements OnInit{
         if (userInfo['data'].userType === 1) {
           const candidateInfo = await this.userService.findByIdSeeker(userInfo['data'].id);
           localStorage.setItem('candidate', JSON.stringify(candidateInfo));
-          window.location.href = '/candidate-dashboard';
+          window.location.href = '/seeker/home';
         } else if (userInfo['data'].userType === 2) {
           const employerInfo = await this.userService.findByIdEmployer(userInfo['data'].id);
           localStorage.setItem('employer', JSON.stringify(employerInfo));
