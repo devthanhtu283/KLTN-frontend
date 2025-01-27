@@ -132,6 +132,10 @@ const routes: Routes = [
         path: "forgot-password",
         component: ForgotPasswordComponent,
       },
+      {
+        path: "verify-account",
+        component: VerifyAccountComponent,
+      },
     ]
   },
 
@@ -200,15 +204,14 @@ const routes: Routes = [
         path: "pricing",
         component: EmployerPricingComponent,
       },
+      {
+        path: "verify-account",
+        component: VerifyAccountComponent,
+      },
   
     ]
   },
 
-
-  {
-    path: "verify-account",
-    component: VerifyAccountComponent,
-  },
 
  
   // {

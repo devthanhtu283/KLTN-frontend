@@ -7,7 +7,7 @@ import { SeekerHomeComponent } from './components/seeker/seeker-home/seeker-home
 import { UserService } from './services/user.service';
 import { MessagesModule } from 'primeng/messages';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BaseUrlUserService } from './services/baseUrlUser.service';
+import { BaseUrl } from './services/baseUrl.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -107,7 +107,7 @@ import { EmployerPricingComponent } from './components/employer/employer-pricing
   providers: [
     UserService,
     MessagesModule,
-    BaseUrlUserService,
+    BaseUrl,
     MessageService,
     DatePipe
   ],
