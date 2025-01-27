@@ -10524,3 +10524,55 @@ div.results.active{
   color: black;
   cursor: pointer;
 }
+.single__cat {
+  height: 120px; /* Đặt chiều cao cố định cho toàn bộ danh mục */
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.single__cat:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.single__cat__icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single__cat__icon img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.single__cat__link {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.single__cat__link .title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.single__cat__link .jobs {
+  font-size: 14px;
+  color: #666;
+}
+
+.single__cat__link .title:hover {
+  color: #007bff;
+}
