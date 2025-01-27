@@ -28,9 +28,9 @@ export class VerifyAccountComponent implements OnInit {
                     if (response && response.status) {
                         this.messageService.add({severity:'success', summary:'Xác thực thành công', detail:'Tài khoản của bạn đã được xác thực thành công!'});
                         if(user.user_type === 1) {
-                            this.router.navigate(['/candidate-dashboard']); // Chuyển hướng về trang chủ hoặc trang đăng nhập
+                            this.router.navigate(['/seeker/dashboard']); // Chuyển hướng về trang chủ hoặc trang đăng nhập
                         } else {
-                            this.router.navigate(['/employer-dashboard']);
+                            this.router.navigate(['/employer/dashboard']);
                         }
                     } else if(user.user_type === 2) {
                         this.messageService.add({severity:'error', summary:'Xác thực thất bại', detail:'Mã xác thực không hợp lệ hoặc tài khoản đã xác thực.'});

@@ -103,8 +103,7 @@ export class SeekerHomeComponent implements OnInit{
         this.messageService.add({severity:'success',summary:'Gửi xác nhận về mail',detail:'Bạn đã tạo tài khoản thành công. Sẽ có 1 email để bạn xác thực tài khoản.'}); 
         if(res) {
           this.userService.findByEmail(this.newCandidate.email).then((response : any)=> {
-            this.candidate = response.user;
-            console.log(this.candidate);
+            this.candidate = response['data'];
             if(this.candidate) {
               localStorage.setItem('user', JSON.stringify(this.candidate));
               localStorage.setItem('candidate', JSON.stringify(this.userService.findByIdSeeker(this.candidate.id)));
@@ -112,7 +111,7 @@ export class SeekerHomeComponent implements OnInit{
               const emailContent = `
                 <p>Chào bạn,</p>
                 <p>Cảm ơn bạn đã đăng ký tài khoản. Vui lòng nhấp vào liên kết dưới đây để xác nhận tài khoản của bạn:</p>
-                <a href='http://localhost:4200/verify-account?email=${encodeURIComponent(this.candidate.email)}&securityCode=${this.candidate.securityCode}'>Xác nhận tài khoản</a>
+                <a href='http://localhost:4200/seeker/verify-account?email=${encodeURIComponent(this.candidate.email)}&securityCode=${this.candidate.securityCode}'>Xác nhận tài khoản</a>
               `;
               const email = {
                 from: 'truongvanhuong221196@gmail.com',
@@ -124,6 +123,9 @@ export class SeekerHomeComponent implements OnInit{
               this.userService.sendEmail(email).then(
                 (res) => {
                   console.log(res);
+                },
+                (err) => {
+                  console.log("Gửi mail không thành công");
                 }
               );
             }
@@ -131,7 +133,7 @@ export class SeekerHomeComponent implements OnInit{
         }
         console.log(res);
        },
-       err => {
+       (err) => {
         this.messageService.add({severity:'error',summary:'Thất bại',detail:'Đăng kí thất bại'}); 
        }
     )
@@ -176,7 +178,8 @@ export class SeekerHomeComponent implements OnInit{
         this.messageService.add({severity:'success',summary:'Gửi xác nhận về mail',detail:'Bạn đã tạo tài khoản thành công. Sẽ có 1 email để bạn xác thực tài khoản.'}); 
         if(res) {
           this.userService.findByEmail(this.newEmployer.email).then((response : any)=> {
-            this.employer = response.user;
+            console.log(response['data']);
+            this.employer = response['data'];
             if(this.employer) {
               localStorage.setItem('user', JSON.stringify(this.employer));
               localStorage.setItem('employer', JSON.stringify(this.userService.findByIdEmployer(this.employer.id)));
@@ -184,7 +187,7 @@ export class SeekerHomeComponent implements OnInit{
               const emailContent = `
                 <p>Chào bạn,</p>
                 <p>Cảm ơn bạn đã đăng ký tài khoản. Vui lòng nhấp vào liên kết dưới đây để xác nhận tài khoản của bạn:</p>
-                <a href='http://localhost:4200/verify-account?email=${encodeURIComponent(this.employer.email)}&securityCode=${this.employer.securityCode}'>Xác nhận tài khoản</a>
+                <a href='http://localhost:4200/employer/verify-account?email=${encodeURIComponent(this.employer.email)}&securityCode=${this.employer.securityCode}'>Xác nhận tài khoản</a>
               `;
               const email = {
                 from: 'truongvanhuong221196@gmail.com',
@@ -195,6 +198,9 @@ export class SeekerHomeComponent implements OnInit{
               this.userService.sendEmail(email).then(
                 (res) => {
                   console.log(res);
+                },
+                (err) => {
+                  console.log("Gửi mail không thành công");
                 }
               );
             }

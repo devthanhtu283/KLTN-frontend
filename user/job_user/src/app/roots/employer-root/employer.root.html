@@ -14,67 +14,27 @@
         <nav class="navigation__menu" id="offcanvas__menu">
             <ul class="list-unstyled">
                 <li class="navigation__menu--item has-child">
-                    <a [routerLink]="['/seeker/home']" class="navigation__menu--item__link">Home</a>
+                    <a [routerLink]="['/employer/dashboard']" class="navigation__menu--item__link">Home</a>
                 </li>
     
                 <li class="navigation__menu--item has-child has-arrow">
-                    <a [routerLink]="['/seeker/list-jobs']" class="navigation__menu--item__link">List Jobs</a>
+                    <a [routerLink]="['/employer/jobs']" class="navigation__menu--item__link">My Jobs</a>
                     <ul class="submenu sub__style" role="menu">
                         <li role="menuitem" class="has-child has-arrow">
                             <a [routerLink]="['/seeker/list-jobs']">Job List</a>
                             <ul class="sub__style" role="menu">
-                                <li role="menuitem"><a [routerLink]="['/seeker/suitable-jobs']">Suitable Jobs</a></li>           
+                                <li role="menuitem"><a [routerLink]="['/seeker/post-job']">Post Jobs</a></li>           
                             </ul>
                         </li>
+                    </ul>
+                </li>
+    
+                <li class="navigation__menu--item has-child has-arrow">
+                    <a [routerLink]="['/employer/list-seeker']" class="navigation__menu--item__link">List Candidate</a>
+                    <ul class="submenu sub__style" role="menu">
                         <li role="menuitem" class="has-child">
-                            <a [routerLink]="['/seeker/job-details']">Job Details</a>
+                            <a [routerLink]="['/employer/shortlist-seeker']">Short List Candidate</a>
                         </li>
-                    </ul>
-                </li>
-    
-                <li class="navigation__menu--item has-child has-arrow">
-                    <a href="#" class="navigation__menu--item__link">Employers</a>
-                    <ul class="submenu sub__style" role="menu">
-                        <li role="menuitem" class="has-child has-arrow">
-                            <a href="employer-1.html">Employer Style</a>
-                            <ul class="sub__style" role="menu">
-                                <li role="menuitem"><a href="employer-1.html">Employer One</a></li>
-                                <li role="menuitem"><a href="employer-2.html">Employer Two</a></li>
-                                <li role="menuitem"><a href="employer-3.html">Employer Three</a></li>
-                            </ul>
-                        </li>
-                        <li role="menuitem" class="has-child has-arrow">
-                            <a href="employer-details-1.html">Employer Details</a>
-                            <ul class="sub__style" role="menu">
-                                <li role="menuitem"><a href="employer-details-1.html">Employer Details 1</a></li>
-                                <li role="menuitem"><a href="employer-details-2.html">Employer Details 2</a></li>
-                            </ul>
-                        </li>
-                        <li role="menuitem"><a href="employer-dashboard.html">Employer Dashboard</a></li>
-                    </ul>
-                </li>
-    
-                <li class="navigation__menu--item has-child has-arrow">
-                    <a href="#" class="navigation__menu--item__link">List Candidate</a>
-                    <ul class="submenu sub__style" role="menu">
-                        <li role="menuitem" class="has-child has-arrow">
-                            <a href="candidate-1.html">Candidate Style</a>
-                            <ul class="sub__style" role="menu">
-                                <li role="menuitem"><a href="candidate-1.html">Candidate One</a></li>
-                                <li role="menuitem"><a href="candidate-2.html">Candidate Two</a></li>
-                                <li role="menuitem"><a href="candidate-3.html">Candidate Three</a></li>
-                                <li role="menuitem"><a href="candidate-4.html">Candidate Four</a></li>
-                            </ul>
-                        </li>
-                        <li role="menuitem" class="has-child has-arrow">
-                            <a href="candidate-details-1.html">Candidate Details</a>
-                            <ul class="sub__style" role="menu">
-                                <li role="menuitem"><a href="candidate-details-1.html">Candidate Details 1</a></li>
-                                <li role="menuitem"><a href="candidate-details-2.html">Candidate Details 2</a></li>
-                                
-                            </ul>
-                        </li>
-                        <li role="menuitem"><a href="candidate-dashboard.html">Candidate Dashboard</a></li>
                     </ul>
                 </li>
     
