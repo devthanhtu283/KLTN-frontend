@@ -7,8 +7,4 @@ export class BaseUrlUserService{
         return this.BaseUrl;
     }
 
-    private ImgBaseUrl: string = "http://localhost:8083/assets/images/"
-    getImgBaseUrl(): string {
-        return this.ImgBaseUrl;
-    }
 }
