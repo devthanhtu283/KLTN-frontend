@@ -44,6 +44,7 @@ import { EmployerMessageComponent } from './components/employer/employer-message
 import { EmployerAlertsComponent } from './components/employer/employer-alerts/employer-alerts.component.';
 import { EmployerMeetingComponent } from './components/employer/employer-meeting/employer-meeting.component';
 import { EmployerPricingComponent } from './components/employer/employer-pricing/employer-pricing.component';
+import { JobService } from './services/job.service';
 // import { MapComponent } from './components/test/map.component';
 
 
@@ -109,7 +110,8 @@ import { EmployerPricingComponent } from './components/employer/employer-pricing
     MessagesModule,
     BaseUrl,
     MessageService,
-    DatePipe
+    DatePipe,
+    JobService
   ],
   bootstrap: [AppComponent]
 })

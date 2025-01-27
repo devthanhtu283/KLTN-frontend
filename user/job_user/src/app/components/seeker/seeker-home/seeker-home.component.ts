@@ -6,6 +6,8 @@ import { MessageService } from 'primeng/api';
 import { CreateUser, User } from 'src/app/models/user.model';
 import { DatePipe } from '@angular/common';
 import * as $ from 'jquery';
+import { JobService } from 'src/app/services/job.service';
+import { Job } from 'src/app/models/job.model';
 
 @Component({
     templateUrl: "./seeker-home.component.html",
@@ -26,13 +28,14 @@ export class SeekerHomeComponent implements OnInit{
   randomNumber = Math.floor(100000 + Math.random() * 900000);
   showForgotModal = true;
   showResetPasswordModal = false;
-
+  jobs: Job[];
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
     private messageService: MessageService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private jobService: JobService
   ) {
     this.registerCandidateForm = this.formBuilder.group({
       candidateName: ['', [Validators.required]],
@@ -57,7 +60,13 @@ export class SeekerHomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.showForm(this.currentForm);
-    
+    this.jobService.findAll().then(
+      res => {
+        this.jobs = res;
+        console.log(this.jobs);
+        console.log(res);
+      }
+    );
   }
 
   showForm(form: string) {
