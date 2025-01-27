@@ -4,10 +4,10 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from "src/app/services/user.service";
 
 @Component({
-    templateUrl: "./seeker-dashboard.component.html",
+    templateUrl: "./seeker-shortlist-jobs.component.html",
 
   })
-export class SeekerDashboardComponent implements OnInit {
+export class SeekerShortListJobsComponent implements OnInit {
 
   constructor(
     private userService: UserService,

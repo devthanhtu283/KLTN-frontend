@@ -123,7 +123,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a [routerLink]="['/employer/pricing']" class="nav-link">
+                    <a [routerLink]="['/employer/pricing']" class="nav-link active">
                         <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.2863 4.99119L10.6588 0.173234C10.4571 0.0596021 10.2304 0 10 0C9.76956 0 9.54289 0.0596021 9.34118 0.173234L0.713725 4.99119C0.497848 5.11167 0.317697 5.28913 0.192132 5.505C0.0665665 5.72086 0.000206733 5.96718 0 6.21818V15.7821C0.000206733 16.0331 0.0665665 16.2794 0.192132 16.4953C0.317697 16.7111 0.497848 16.8886 0.713725 17.0091L9.34118 21.8271C9.54295 21.9405 9.7696 22 10 22C10.2304 22 10.4571 21.9405 10.6588 21.8271L19.2863 17.0091C19.5022 16.8886 19.6823 16.7111 19.8079 16.4953C19.9334 16.2794 19.9998 16.0331 20 15.7821V6.21818C19.9998 5.96718 19.9334 5.72086 19.8079 5.505C19.6823 5.28913 19.5022 5.11167 19.2863 4.99119ZM9.90196 1.22522C9.93082 1.20912 9.96318 1.20068 9.99608 1.20068C10.029 1.20068 10.0613 1.20912 10.0902 1.22522L18.2853 5.80019L14.9578 7.65717L6.67157 3.03121L9.90196 1.22522ZM9.41177 20.5001L1.27451 15.9571C1.24444 15.9394 1.21952 15.9139 1.2023 15.8831C1.18507 15.8524 1.17616 15.8175 1.17647 15.7821V6.86618L9.41177 11.4661V20.5001ZM1.71471 5.80019L5.44706 3.7152L13.7324 8.34116L10 10.4241L1.71471 5.80019ZM18.8235 15.7821C18.8238 15.8175 18.8149 15.8524 18.7977 15.8831C18.7805 15.9139 18.7556 15.9394 18.7255 15.9571L10.5882 20.5001V11.4641L14.1176 9.49316V13.4001C14.1176 13.5592 14.1796 13.7119 14.2899 13.8244C14.4003 13.9369 14.5499 14.0001 14.7059 14.0001C14.8619 14.0001 15.0115 13.9369 15.1218 13.8244C15.2321 13.7119 15.2941 13.5592 15.2941 13.4001V8.83716L18.8235 6.86618V15.7821Z" fill="#595959"/>
                         </svg>
@@ -131,7 +131,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a [routerLink]="['/employer/change-password']" class="nav-link active"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                    <a [routerLink]="['/employer/change-password']" class="nav-link"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M8.00153 15.0012C8.00153 15.2665 7.89615 15.5209 7.70858 15.7085C7.521 15.896 7.26659 16.0014 7.00132 16.0014C6.73604 16.0014 6.48163 15.896 6.29406 15.7085C6.10648 15.5209 6.0011 15.2665 6.0011 15.0012C6.0011 14.7359 6.10648 14.4815 6.29406 14.2939C6.48163 14.1064 6.73604 14.001 7.00132 14.001C7.26659 14.001 7.521 14.1064 7.70858 14.2939C7.89615 14.4815 8.00153 14.7359 8.00153 15.0012ZM12.0024 15.0012C12.0024 15.2665 11.897 15.5209 11.7094 15.7085C11.5219 15.896 11.2675 16.0014 11.0022 16.0014C10.7369 16.0014 10.4825 15.896 10.2949 15.7085C10.1073 15.5209 10.002 15.2665 10.002 15.0012C10.002 14.7359 10.1073 14.4815 10.2949 14.2939C10.4825 14.1064 10.7369 14.001 11.0022 14.001C11.2675 14.001 11.5219 14.1064 11.7094 14.2939C11.897 14.4815 12.0024 14.7359 12.0024 15.0012ZM16.0033 15.0012C16.0033 15.2665 15.8979 15.5209 15.7103 15.7085C15.5227 15.896 15.2683 16.0014 15.0031 16.0014C14.7378 16.0014 14.4834 15.896 14.2958 15.7085C14.1082 15.5209 14.0028 15.2665 14.0028 15.0012C14.0028 14.7359 14.1082 14.4815 14.2958 14.2939C14.4834 14.1064 14.7378 14.001 15.0031 14.001C15.2683 14.001 15.5227 14.1064 15.7103 14.2939C15.8979 14.4815 16.0033 14.7359 16.0033 15.0012Z"
@@ -161,62 +161,234 @@
                 <div class="sidebar__action"><i class="fa-sharp fa-regular fa-bars"></i> Sidebar</div>
             </div>
             <!-- sidebar menu end -->
+            <h6 class="fw-semibold mb-4">Your Packages</h6>
 
-            <div class="candidate__passwordchange">
-                <h6 class="mb-3">Change Password</h6>
-                <div class="change__password">
-                    <div class="password__change__form">
-                        <h6 class="text-center fw-semibold mb-30">Change Password</h6>
-                        <form [formGroup]="changePassEmployerForm" (ngSubmit)="changePassEmployer()">
-                            <!-- single item -->
-                            <div class="rts-input-group">
-                                <label for="currentPassword">Current Password</label>
-                                <div class="input-box">
-                                    <input type="password" formControlName="currentPassword" name="currentPassword" id="currentPassword" placeholder="Enter your current password">
-                                    <svg class="password__icon" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.4 17.7977C9.4 18.1159 9.27357 18.4211 9.04853 18.6462C8.82348 18.8712 8.51826 18.9977 8.2 18.9977C7.88174 18.9977 7.57652 18.8712 7.35147 18.6462C7.12643 18.4211 7 18.1159 7 17.7977C7 17.4794 7.12643 17.1742 7.35147 16.9491C7.57652 16.7241 7.88174 16.5977 8.2 16.5977C8.51826 16.5977 8.82348 16.7241 9.04853 16.9491C9.27357 17.1742 9.4 17.4794 9.4 17.7977ZM14.2 17.7977C14.2 18.1159 14.0736 18.4211 13.8485 18.6462C13.6235 18.8712 13.3183 18.9977 13 18.9977C12.6817 18.9977 12.3765 18.8712 12.1515 18.6462C11.9264 18.4211 11.8 18.1159 11.8 17.7977C11.8 17.4794 11.9264 17.1742 12.1515 16.9491C12.3765 16.7241 12.6817 16.5977 13 16.5977C13.3183 16.5977 13.6235 16.7241 13.8485 16.9491C14.0736 17.1742 14.2 17.4794 14.2 17.7977ZM19 17.7977C19 18.1159 18.8736 18.4211 18.6485 18.6462C18.4235 18.8712 18.1183 18.9977 17.8 18.9977C17.4817 18.9977 17.1765 18.8712 16.9515 18.6462C16.7264 18.4211 16.6 18.1159 16.6 17.7977C16.6 17.4794 16.7264 17.1742 16.9515 16.9491C17.1765 16.7241 17.4817 16.5977 17.8 16.5977C18.1183 16.5977 18.4235 16.7241 18.6485 16.9491C18.8736 17.1742 19 17.4794 19 17.7977Z" fill="black"/>
-                                        <path d="M11.8 24.9976H8.2C4.8064 24.9976 3.1084 24.9976 2.0548 23.9428C1 22.8892 1 21.1912 1 17.7976C1 14.404 1 12.706 2.0548 11.6524C3.1084 10.5976 4.8064 10.5976 8.2 10.5976H17.8C21.1936 10.5976 22.8916 10.5976 23.9452 11.6524C25 12.706 25 14.404 25 17.7976C25 21.1912 25 22.8892 23.9452 23.9428C22.8916 24.9976 21.1936 24.9976 17.8 24.9976H16.6M5.8 10.5976V8.19763C5.8 7.78963 5.8336 7.38763 5.8996 6.99763M19.9732 6.39763C19.6465 5.13602 18.9836 3.98667 18.0552 3.07204C17.1269 2.15742 15.9678 1.51177 14.7014 1.2039C13.4351 0.896023 12.1089 0.937454 10.8643 1.32378C9.61961 1.7101 8.50307 2.42684 7.6336 3.39763" stroke="#939393" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg> 
-                                </div>
+            <form action="employer-job-price.html#" class="package__form mb-30">
+                <div class="package__selection">
+                    <div class="single__package__selection">
+                        <input type="radio" id="package1" name="package" checked class="form-selection">
+                        <label for="package1" class="form-selection-label">
+                            <span class="h6 fw-semibold d-block">Basic</span>
+                            <span>10 job posted out of 40, listed for 10 days</span>
+                        </label>
+                    </div>
+                    <div class="single__package__selection">
+                        <input type="radio" id="package2" name="package" class="form-selection">
+                        <label for="package2" class="form-selection-label">
+                            <span class="h6 fw-semibold d-block">Premium</span>
+                            <span>10 job posted out of 40, listed for 10 days</span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <!-- show -->
+            
+
+            <div class="dash__pricing__plan">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold">Pricing Plan</h6>
+                    <div class="d-flex align-items-center max-content gap-2">
+                        <p class="mb-0">Monthly</p>
+                        <label for="pricing__toogle" class="switch">
+                            <input type="checkbox" name="pricing__toogle" class="pricing__toogle" id="pricing__toogle" />
+                            <span class="slider round"></span>
+                        </label>
+                        <p class="mb-0">Yearly</p>
+                    </div>
+                </div>
+                <div class="monthly__pricing active mt-40">
+                    <div class="row g-30" >
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Basic</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">30$</span>Month</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
                             </div>
-                            <!-- single item end -->
-                            <!-- single item -->
-                            <div class="rts-input-group">
-                                <label for="currentPassword">New password</label>
-                                <div class="input-box">
-                                    <input type="password" formControlName="newPassword" name="Newpassword" id="Newpassword" placeholder="Enter your New password">
-                                    <svg class="password__icon" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.4 17.7977C9.4 18.1159 9.27357 18.4211 9.04853 18.6462C8.82348 18.8712 8.51826 18.9977 8.2 18.9977C7.88174 18.9977 7.57652 18.8712 7.35147 18.6462C7.12643 18.4211 7 18.1159 7 17.7977C7 17.4794 7.12643 17.1742 7.35147 16.9491C7.57652 16.7241 7.88174 16.5977 8.2 16.5977C8.51826 16.5977 8.82348 16.7241 9.04853 16.9491C9.27357 17.1742 9.4 17.4794 9.4 17.7977ZM14.2 17.7977C14.2 18.1159 14.0736 18.4211 13.8485 18.6462C13.6235 18.8712 13.3183 18.9977 13 18.9977C12.6817 18.9977 12.3765 18.8712 12.1515 18.6462C11.9264 18.4211 11.8 18.1159 11.8 17.7977C11.8 17.4794 11.9264 17.1742 12.1515 16.9491C12.3765 16.7241 12.6817 16.5977 13 16.5977C13.3183 16.5977 13.6235 16.7241 13.8485 16.9491C14.0736 17.1742 14.2 17.4794 14.2 17.7977ZM19 17.7977C19 18.1159 18.8736 18.4211 18.6485 18.6462C18.4235 18.8712 18.1183 18.9977 17.8 18.9977C17.4817 18.9977 17.1765 18.8712 16.9515 18.6462C16.7264 18.4211 16.6 18.1159 16.6 17.7977C16.6 17.4794 16.7264 17.1742 16.9515 16.9491C17.1765 16.7241 17.4817 16.5977 17.8 16.5977C18.1183 16.5977 18.4235 16.7241 18.6485 16.9491C18.8736 17.1742 19 17.4794 19 17.7977Z" fill="black"/>
-                                        <path d="M11.8 24.9976H8.2C4.8064 24.9976 3.1084 24.9976 2.0548 23.9428C1 22.8892 1 21.1912 1 17.7976C1 14.404 1 12.706 2.0548 11.6524C3.1084 10.5976 4.8064 10.5976 8.2 10.5976H17.8C21.1936 10.5976 22.8916 10.5976 23.9452 11.6524C25 12.706 25 14.404 25 17.7976C25 21.1912 25 22.8892 23.9452 23.9428C22.8916 24.9976 21.1936 24.9976 17.8 24.9976H16.6M5.8 10.5976V8.19763C5.8 7.78963 5.8336 7.38763 5.8996 6.99763M19.9732 6.39763C19.6465 5.13602 18.9836 3.98667 18.0552 3.07204C17.1269 2.15742 15.9678 1.51177 14.7014 1.2039C13.4351 0.896023 12.1089 0.937454 10.8643 1.32378C9.61961 1.7101 8.50307 2.42684 7.6336 3.39763" stroke="#939393" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg> 
-                                </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Basic</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">99$</span>Month</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
                             </div>
-                            <!-- single item end -->
-                            <!-- single item -->
-                            <div class="rts-input-group">
-                                <label for="currentPassword">Retype password</label>
-                                <div class="input-box">
-                                    <input type="password" formControlName="retypePassword" name="Retypepassword" id="Retypepassword" placeholder="Enter your Retype password">
-                                    <svg class="password__icon" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.4 17.7977C9.4 18.1159 9.27357 18.4211 9.04853 18.6462C8.82348 18.8712 8.51826 18.9977 8.2 18.9977C7.88174 18.9977 7.57652 18.8712 7.35147 18.6462C7.12643 18.4211 7 18.1159 7 17.7977C7 17.4794 7.12643 17.1742 7.35147 16.9491C7.57652 16.7241 7.88174 16.5977 8.2 16.5977C8.51826 16.5977 8.82348 16.7241 9.04853 16.9491C9.27357 17.1742 9.4 17.4794 9.4 17.7977ZM14.2 17.7977C14.2 18.1159 14.0736 18.4211 13.8485 18.6462C13.6235 18.8712 13.3183 18.9977 13 18.9977C12.6817 18.9977 12.3765 18.8712 12.1515 18.6462C11.9264 18.4211 11.8 18.1159 11.8 17.7977C11.8 17.4794 11.9264 17.1742 12.1515 16.9491C12.3765 16.7241 12.6817 16.5977 13 16.5977C13.3183 16.5977 13.6235 16.7241 13.8485 16.9491C14.0736 17.1742 14.2 17.4794 14.2 17.7977ZM19 17.7977C19 18.1159 18.8736 18.4211 18.6485 18.6462C18.4235 18.8712 18.1183 18.9977 17.8 18.9977C17.4817 18.9977 17.1765 18.8712 16.9515 18.6462C16.7264 18.4211 16.6 18.1159 16.6 17.7977C16.6 17.4794 16.7264 17.1742 16.9515 16.9491C17.1765 16.7241 17.4817 16.5977 17.8 16.5977C18.1183 16.5977 18.4235 16.7241 18.6485 16.9491C18.8736 17.1742 19 17.4794 19 17.7977Z" fill="black"/>
-                                        <path d="M11.8 24.9976H8.2C4.8064 24.9976 3.1084 24.9976 2.0548 23.9428C1 22.8892 1 21.1912 1 17.7976C1 14.404 1 12.706 2.0548 11.6524C3.1084 10.5976 4.8064 10.5976 8.2 10.5976H17.8C21.1936 10.5976 22.8916 10.5976 23.9452 11.6524C25 12.706 25 14.404 25 17.7976C25 21.1912 25 22.8892 23.9452 23.9428C22.8916 24.9976 21.1936 24.9976 17.8 24.9976H16.6M5.8 10.5976V8.19763C5.8 7.78963 5.8336 7.38763 5.8996 6.99763M19.9732 6.39763C19.6465 5.13602 18.9836 3.98667 18.0552 3.07204C17.1269 2.15742 15.9678 1.51177 14.7014 1.2039C13.4351 0.896023 12.1089 0.937454 10.8643 1.32378C9.61961 1.7101 8.50307 2.42684 7.6336 3.39763" stroke="#939393" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg> 
-                                </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Standard</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">199$</span>Month</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
                             </div>
-                            <!-- single item end -->
-                             <div class="d-flex justify-content-end">
-                                 <button type="submit" class="rts__btn fill__btn">Update Password</button>
-                             </div>
-                        </form>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Premium</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">100$/</span>Month</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Basic</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">130$</span>Month</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Standard</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">299$</span>Month</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yearly__pricing mt-40">
+                    <div class="row g-30">
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Free</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">Free/</span>Yearly</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Basic</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">399$</span>Yearly</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Standard</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">599$</span>Yearly</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Free</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">Free/</span>Yearly</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Basic</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">399$</span>Yearly</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__pricing__box">
+                                <div class="h6 fw-medium lh-1 mb-2 text-primary">Standard</div>
+                                <div class="plan__price lh-1 mb-40"><span class="h2 mb-0 me-1">599$</span>Yearly</div>
+                                <ul class="plan__feature">
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Unlimited access to 100+ Job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> 10+ Featured job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Job duration for 30 days</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Get 10+ job</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Try for free, forever!</li>
+                                    <li><i class="fa-sharp fa-solid fa-check"></i> Individual Job</li>
+                                </ul>
+                                <a href="employer-job-price.html#" class="rts__btn pricing__btn  no__fill__btn mt-40">Get Started Now</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="d-flex justify-content-center mt-30">
-            <p class="copyright">Copyright © 2024 All Rights Reserved by jobpath</p> 
+            <p class="copyright">Copyright © 2024 All Rights Reserved by jobpath</p>
         </div>
     </div>
 </div>
 <!-- content area end -->
-<p-toast></p-toast>

@@ -4,21 +4,20 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from "src/app/services/user.service";
 
 @Component({
-    templateUrl: "./seeker-dashboard.component.html",
+    templateUrl: "./employer-meeting.component.html",
 
   })
-export class SeekerDashboardComponent implements OnInit {
+export class EmployerMeetingComponent implements OnInit {
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private cdr: ChangeDetectorRef,
 
   ) {}
   user: User;
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (false) {
+    if (!user) {
       this.router.navigate(['/']); // Điều hướng lại nếu không tìm thấy user
     } else {
       this.user = user; // Gán dữ liệu người dùng

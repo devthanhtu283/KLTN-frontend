@@ -13,32 +13,21 @@
                             <div class="navigation d-none d-lg-block">
         <nav class="navigation__menu" id="offcanvas__menu">
             <ul class="list-unstyled">
-                <li class="navigation__menu--item has-child has-arrow">
-                    <a href="#" class="navigation__menu--item__link">Home</a>
-                    <ul class="submenu sub__style" role="menu">
-                        <li role="menuitem"><a href="index.html">Home One</a></li>
-                        <li role="menuitem"><a href="index-2.html">Home Two</a></li>
-                        <li role="menuitem"><a href="index-3.html">Home Three</a></li>
-                        <li role="menuitem"><a href="index-4.html">Home Four</a></li>
-                        <li role="menuitem"><a href="index-5.html">Home Five</a></li>
-                        <li role="menuitem"><a href="index-6.html">Home Six</a></li>
-                    </ul>
+                <li class="navigation__menu--item has-child">
+                    <a [routerLink]="['/seeker/home']" class="navigation__menu--item__link">Home</a>
                 </li>
     
                 <li class="navigation__menu--item has-child has-arrow">
-                    <a href="#" class="navigation__menu--item__link">Browse Jobs</a>
+                    <a [routerLink]="['/seeker/list-jobs']" class="navigation__menu--item__link">List Jobs</a>
                     <ul class="submenu sub__style" role="menu">
                         <li role="menuitem" class="has-child has-arrow">
-                            <a href="#">Job List</a>
+                            <a [routerLink]="['/seeker/list-jobs']">Job List</a>
                             <ul class="sub__style" role="menu">
-                                <li role="menuitem"><a href="job-list-2.html">Job List Two</a></li>           
+                                <li role="menuitem"><a [routerLink]="['/seeker/suitable-jobs']">Suitable Jobs</a></li>           
                             </ul>
                         </li>
-                        <li role="menuitem" class="has-child has-arrow">
-                            <a href="#">Job Details</a>
-                            <ul class="sub__style" role="menu">
-                                <li role="menuitem"><a href="job-details-1.html">Job Details One</a></li>
-                            </ul>
+                        <li role="menuitem" class="has-child">
+                            <a [routerLink]="['/seeker/job-details']">Job Details</a>
                         </li>
                     </ul>
                 </li>
@@ -102,20 +91,15 @@
                                 <li role="menuitem"><a href="blog-details.html">Blog Details</a></li>
                             </ul>
                         </li>
-                        <li role="menuitem"><a href="about.html">About</a></li>
-                        <li role="menuitem"><a href="faq.html">Faq</a></li>
-                        <li role="menuitem"><a href="tos.html">Terms &amp; Conditions</a></li>
-                        <li role="menuitem"><a href="privacy.html">Privacy Policy</a></li>
-                        <li role="menuitem"><a href="pricing.html">Pricing</a></li>
+                        <li role="menuitem"><a [routerLink]="['/seeker/about']">About</a></li>
+                        <li role="menuitem"><a [routerLink]="['/seeker/faq']">Faq</a></li>
+                        <li role="menuitem"><a [routerLink]="['/seeker/terms-and-conditions']">Terms &amp; Conditions</a></li>
+                        <li role="menuitem"><a [routerLink]="['/seeker/policy']">Privacy Policy</a></li>                       
                     </ul>
                 </li>
     
-                <li class="navigation__menu--item has-child has-arrow">
-                    <a href="#" class="navigation__menu--item__link">Contact</a>
-                    <ul class="submenu sub__style" role="menu">
-                        <li role="menuitem"><a href="contact-1.html">Contact One</a></li>
-                        <li role="menuitem"><a href="contact-2.html">Contact Two</a></li>
-                    </ul>
+                <li class="navigation__menu--item has-child">
+                    <a [routerLink]="['/seeker/contact']" class="navigation__menu--item__link">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -248,12 +232,12 @@
                                             </div>
                                         </div>
                                         <ul class="rts__dropdown dropdown-menu top-25">
-                                            <li><a class="dropdown-item" [routerLink]="['/candidate-dashboard']">Dashboard</a></li>
-                                            <li><a class="dropdown-item"[routerLink]="user.userType === 1 ? '/candidate-profile' : '/employer-profile'">Profile</a></li>
-                                            <li><a class="dropdown-item" href="candidate-resume.html">Resume</a></li>
-                                            <li><a class="dropdown-item" href="candidate-shortlist.html">Shortlist Job</a></li>
-                                            <li><a class="dropdown-item" href="candidate-message.html">Message</a></li>
-                                            <li><a class="dropdown-item"  [routerLink]="user.userType === 1 ? '/candidate-change-password' : '/employer-change-password'">Change Password</a></li>
+                                            <li><a class="dropdown-item" [routerLink]="['/seeker/dashboard']">Dashboard</a></li>
+                                            <li><a class="dropdown-item"[routerLink]="user.userType === 1 ? '/seeker/profile' : '/employer/profile'">Profile</a></li>
+                                            <li><a class="dropdown-item" [routerLink]="['/seeker/resume']">Resume</a></li>
+                                            <li><a class="dropdown-item" [routerLink]="['/seeker/shortlist-job']">Shortlist Job</a></li>
+                                            <li><a class="dropdown-item" [routerLink]="['/seeker/message']">Message</a></li>
+                                            <li><a class="dropdown-item"  [routerLink]="user.userType === 1 ? '/seeker/change-password' : '/employer/change-password'">Change Password</a></li>
                                             <li><a class="dropdown-item" [routerLink]="['/']" (click)="clearData()">Log Out</a></li>
                                             <li><a class="dropdown-item" href="candidate-deleteprofile.html">Delete Account</a></li>
                                         </ul>  
@@ -273,7 +257,8 @@
         <router-outlet></router-outlet>
         
     
-        
+  
+            
     
       
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">

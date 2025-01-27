@@ -245,7 +245,7 @@ export class SeekerHomeComponent implements OnInit{
         } else if (userInfo['data'].userType === 2) {
           const employerInfo = await this.userService.findByIdEmployer(userInfo['data'].id);
           localStorage.setItem('employer', JSON.stringify(employerInfo));
-          window.location.href = '/employer-dashboard';
+          window.location.href = '/employer/dashboard';
         }
       } else {
         this.messageService.add({

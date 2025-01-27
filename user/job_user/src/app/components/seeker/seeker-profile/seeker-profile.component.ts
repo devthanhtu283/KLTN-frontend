@@ -7,9 +7,9 @@ import { Seeker, User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  templateUrl: './candidate-profile.component.html',
+  templateUrl: './seeker-profile.component.html',
 })
-export class CandidateProfilePasswordComponent implements OnInit {
+export class SeekerProfileComponent implements OnInit {
   candidateForm: FormGroup;
   user: User;
   seeker: Seeker;
