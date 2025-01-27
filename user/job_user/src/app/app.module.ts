@@ -16,27 +16,71 @@ import { DatePipe } from '@angular/common';
 import { VerifyAccountComponent } from './components/seeker/verify/verify-account.component';
 import { ForgotPasswordComponent } from './components/seeker/forgot-password/forgot-password.component';
 import { SeekerDashboardComponent } from './components/seeker/seeker-dashboard/seeker-dashboard.component';
-import { EmployerDashboardComponent } from './components/employer/dashboard/employer-dashboard.component';
+import { EmployerDashboardComponent } from './components/employer/employer-dashboard/employer-dashboard.component';
 import { EmployerChangePasswordComponent } from './components/employer/change-password/employer-change-password.component';
-import { CandidateChangePasswordComponent } from './components/seeker/change-password/candidate-change-password.component';
-import { CandidateProfilePasswordComponent } from './components/seeker/profile/candidate-profile.component';
-import { SeekerRoot } from './roots/seeeker-root/seeker.root';
+import { CandidateChangePasswordComponent } from './components/seeker/seeker-change-password/candidate-change-password.component';
+import { SeekerProfileComponent } from './components/seeker/seeker-profile/seeker-profile.component';
+import { SeekerRoot } from './roots/seeker-root/seeker.root';
 import { EmployerRoot } from './roots/employer-root/employer.root';
+import { SeekerResumeComponent } from './components/seeker/seeker-resume/seeker-resume.component';
+import { SeekerAlertsComponent } from './components/seeker/seeker-aleart/seeker-alerts.component';
+import { SeekerAppliedJobsComponent } from './components/seeker/seeker-applied-jobs/seeker-applied-jobs.component';
+import { SeekerShortListJobsComponent } from './components/seeker/seeker-shortlist-jobs/seeker-shortlist-jobs.component';
+import { SeekerMessageComponent } from './components/seeker/seeker-message/seeker-message.component';
+import { SeekerFollowerComponent } from './components/seeker/seeker-follower/seeker-follower.component';
+import { SeekerMeetingComponent } from './components/seeker/seeker-meeting/seeker-meeting.component';
+import { SeekerJobDetailsComponent } from './components/seeker/seeker-jobs-details/seeker-job-details.component';
+import { SeekerContactComponent } from './components/seeker/seeker-contact/seeker-contact.component';
+import { AboutComponent } from './components/about/about.component';
+import { FAQComponent } from './components/faq/faq.component';
+import { TermAndConditionsComponent } from './components/term&conditions/term&conditions.component';
+import { PolicyComponent } from './components/policy/policy.component';
+import { EmployerProfileComponent } from './components/employer/employer-profile/employer-profile.component';
+import { EmployerPostJobComponent } from './components/employer/employer-post-job/employer-post-job.component';
+import { EmployerListCandidateComponent } from './components/employer/employer-list-candidate/employer-list-candidate.component';
+import { EmployerJobsComponent } from './components/employer/employer-jobs/employer-jobs.component';
+import { EmployerShortListCandidateComponent } from './components/employer/employer-shortlist-candidate/employer-shortlist-candidate.component';
+import { EmployerMessageComponent } from './components/employer/employer-message/employer-message.component';
+import { EmployerAlertsComponent } from './components/employer/employer-alerts/employer-alerts.component.';
+import { EmployerMeetingComponent } from './components/employer/employer-meeting/employer-meeting.component';
+import { EmployerPricingComponent } from './components/employer/employer-pricing/employer-pricing.component';
 // import { MapComponent } from './components/test/map.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    AboutComponent,
+    FAQComponent,
+    TermAndConditionsComponent,
+    PolicyComponent,
     ///////////////////
     SeekerRoot,
     SeekerHomeComponent,
     SeekerDashboardComponent,
+    SeekerResumeComponent,
+    SeekerProfileComponent,
+    SeekerAlertsComponent,
+    SeekerAppliedJobsComponent,
+    SeekerShortListJobsComponent,
+    SeekerMessageComponent,
+    SeekerFollowerComponent,
+    SeekerMeetingComponent,
+    SeekerJobDetailsComponent,
+    SeekerContactComponent,
     /////////////////
 
     /////////////////
     EmployerRoot,
+    EmployerProfileComponent,
+    EmployerPostJobComponent,
+    EmployerListCandidateComponent,
+    EmployerJobsComponent,
+    EmployerShortListCandidateComponent,
+    EmployerMessageComponent,
+    EmployerAlertsComponent,
+    EmployerMeetingComponent,
+    EmployerPricingComponent,
     ////////////////
 
 
@@ -47,7 +91,6 @@ import { EmployerRoot } from './roots/employer-root/employer.root';
     ForgotPasswordComponent,
     EmployerChangePasswordComponent,
     CandidateChangePasswordComponent,
-    CandidateProfilePasswordComponent,
 
   
     // MapComponent
