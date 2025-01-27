@@ -11,26 +11,25 @@
                             </div>
                             <div class="job__meta w-100 d-flex text-center text-md-start flex-column gap-2">
                                 <div class="">
-                                    <h3 class="job__title h3 mb-0">Senior UI Designer, Apple</h3>
+                                    <h3 class="job__title h3 mb-0">{{job.title}}</h3>
                                 </div>
                                 <div class="d-flex gap-3 justify-content-center justify-content-md-start flex-wrap mb-3 mt-2">
                                     <div class="d-flex gap-2 align-items-center">
-                                        <i class="fa-light fa-location-dot"></i> Newyork, USA
+                                        <i class="fa-light fa-location-dot"></i> {{job.locationName}}
                                     </div>
                                     <div class="d-flex gap-2 align-items-center">
-                                        <i class="fa-light rt-briefcase"></i> Full Time
+                                        <i class="fa-light rt-briefcase"></i> {{job.worktypeName}}
                                     </div>
                                     <div class="d-flex gap-2 align-items-center">
-                                        <i class="fa-light fa-clock"></i> 1 Years Ago
+                                        <i class="fa-light fa-clock"></i> {{ job.postedExpired | date:'dd/MM/yyyy' }}
+
                                     </div>
                                     <div class="d-flex gap-2 fw-medium align-items-center">
-                                        <i class="fa-light rt-price-tag"></i> $1000 - $2000 Monthly
+                                        <i class="fa-light rt-price-tag"></i> {{job.salary}}
                                     </div>
                                 </div>
                                 <div class="job__tags d-flex justify-content-center justify-content-md-start flex-wrap gap-3">
-                                    <a href="job-details-1.html#">Creative</a>
-                                    <a href="job-details-1.html#">user interface</a>
-                                    <a href="job-details-1.html#">web ui</a>
+                                    <a style="cursor: pointer;">{{job.requiredSkills}}</a>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +62,7 @@
                         <nav>
                             <div class="nav nav-tabs">
                                 <a class="nav-link active" href="job-details-1.html#all">All</a>
-                                <a class="nav-link" href="job-details-1.html#description">Job Description</a>
+                                <a class="nav-link" href="#salary">Job Description</a>
                                 <a class="nav-link" href="job-details-1.html#responsibility">Responsibilities</a>
                                 <a class="nav-link" href="job-details-1.html#requirements">Requirements</a>
                                 <a class="nav-link" href="job-details-1.html#skill">Skill & Experience</a>
@@ -73,40 +72,17 @@
                     </div>
                     <div id="description" class="mb-30">
                         <h6 class="fw-semibold mb-20">Job Description</h6>
-                        <p>We are seeking a skilled Part-Time Software Engineer to join our team, specializing in social media content creation for lead generation purposes. The ideal candidate will have a creative flair, technical proficiency, and a strong understanding of social media trends and algorithms. Must be able to work Monday-Friday during EST business hours. This role will be under the ScaledOn brand, but will be working directly with one of our partners as their dedicated Software Engineer.</p>
+                        <div class="list-style-dot" [innerHTML]="job.description"></div>
                     </div>
-                    <div id="responsibility" class="mb-30">
-                        <h6 class="fw-semibold mb-20">Responsibility</h6>
-                        <ul class="list-style-dot">
-                            <li>Design and build web and enterprise application using in ReactJS/Next JS/.Net Core</li>
-                            <li>Collaborate with cross-functional teams to analyze, design, and implement new features.</li>
-                            <li>Follow defined coding rules/conventions defined by the company.</li>
-                            <li>Perform Unit test and ensure proper test coverage as per organizational standard.</li>
-                            <li>Prepare basic design, detail design, execute basic acceptance testing.</li>
-                            <li>Follow review process for peer review to code delivery.</li>
-                            <li>Participate in defined meeting as per company policy.</li>
-                            <li>Senior Software Engineer should pose mindset and ability to lead small team.</li>
-                        </ul>
-                    </div>
+                
                     <div id="requirements" class="mb-30">
                         <h6 class="fw-semibold mb-20">Requirements</h6>
-                        <ul class="list-style-dot">
-                            <li>Excellent knowledge of Relational Databases MYSQL and ORM technologies (JPA, Hibernate).</li>
-                            <li>Strong understanding on Object-Oriented analysis and design using common design patterns.</li>
-                            <li>Need to know advanced in ReactJS/Next JS/.Net Core.</li>
-                            <li>Practical experience in REST & RESTful web services.</li>
-                            <li>Commanding knowledge on Maven, Gradle build tools.</li>
-                            <li>Follow review process for peer review to code delivery.</li>
-                            <li>Participate in defined meeting as per company policy.</li>
-                            <li>Senior Software Engineer should pose mindset and ability to lead small team.</li>
-                        </ul>
+                        <div class="list-style-dot" [innerHTML]="job.required"></div>
                     </div>
                     <div id="skill" class="mb-30">
                         <h6 class="fw-semibold mb-20">Skills and Experience</h6>
                         <div class="job__tags job__details__tags">
-                            <a href="job-details-1.html#" class="job__tag">Javascript</a>
-                            <a href="job-details-1.html#" class="job__tag">user interface</a>
-                            <a href="job-details-1.html#" class="job__tag">Problem Solving</a>
+                            <a style="cursor: pointer;" class="job__tag">{{job.requiredSkills}}</a>
                         </div>
                     </div>
                     <div id="salary" class="mb-30">
@@ -121,6 +97,12 @@
                             <li>early Earned Leave, Sick Leave and Casual Leave facility and many more to come soon.</li>
                             <li>Salery: $1000- $2000 Monthly</li>
                         </ul>
+                    </div>
+                    <div id="address" class="mb-30">
+                        <h6 class="fw-semibold mb-20">Address</h6>
+                        <div class="job__tags job__details__tags">
+                            <a style="cursor: pointer;" class="job__tag">{{job.address}}</a>
+                        </div>
                     </div>
                     <div class="d-flex flex-wrap gap-4 mt-40 mb-60">
                         <a href="job-details-1.html#" class="rts__btn apply__btn fw-bold">Apply This Possition</a>
@@ -161,7 +143,7 @@
                         <div class="icon">
                             <img src="assets/img/icon/microsoft.svg" alt="">
                         </div>
-                        <h5 class="company__name mt-20">Google.com</h5>
+                        <h5 class="company__name mt-20">{{job.employerName}}</h5>
                         <a href="job-details-1.html#" class="company__link d-block mt-20" aria-label="Visit Website" target="_blank">Visit Website</a>
                         <a href="job-details-1.html#" class="rts__btn apply__btn mt-40">Apply This Possition</a>
                     </div>
@@ -171,31 +153,28 @@
                             <ul>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                     <span class="left-text"> <i class="rt-calender"></i> Date Posted</span>
-                                    <span class="text">:  10,July, 2023</span>
+                                    <span class="text">{{job.postedAt | date:'dd/MM/yyyy'}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
-                                    <span class="left-text"> <i class="fa-light fa-user"></i> Vacancy</span>
-                                    <span class="text">: 5</span>
+                                    <span class="left-text"> <i class="fa-light fa-user"></i> Member</span>
+                                    <span class="text">: {{job.member}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                     <span class="left-text"> <i class="rt-experience"></i> Experience</span>
-                                    <span class="text">: 5 Years</span>
+                                    <span class="text">: {{job.experienceName}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                     <span class="left-text"> <i class="rt-price-tag"></i> Offered Salary</span>
-                                    <span class="text">: $2000-$3000</span>
+                                    <span class="text">: {{job.salary}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                     <span class="left-text"> <i class="rt-loading"></i> Job Deadline</span>
-                                    <span class="text">: 01 July 2024</span>
+                                    <span class="text">: {{ job.postedExpired | date:'dd/MM/yyyy' }}</span>
                                 </li>
-                                <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
-                                    <span class="left-text"> <i class="rt-qualification"></i> Qualification</span>
-                                    <span class="text">: Bachelor Degree</span>
-                                </li>
+                        
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                     <span class="left-text"> <i class="fa-sharp fa-thin fa-location-dot"></i> Location</span>
-                                    <span class="text">: New York, USA</span>
+                                    <span class="text"> {{job.address}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                     <span class="left-text"> <i class="fa-light fa-user"></i> Gender</span>
@@ -286,136 +265,42 @@
                 }'>
                 <div class="swiper-wrapper">
                     <!-- single slide -->
-                    <div class="swiper-slide">
-                        <div class="rts__job__card style__five">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="company__icon">
-                                    <img src="assets/img/home-1/company/microsoft.svg" alt="">
+                    <ng-container *ngFor="let job of jobs">
+                        <div class="swiper-slide">
+                            <div class="rts__job__card style__five">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="company__icon">
+                                        <img src="assets/img/home-1/company/microsoft.svg" alt="">
+                                    </div>
+                                    <div class="featured__option">
+                                        <span>Featured</span>
+                                    </div>
                                 </div>
-                                <div class="featured__option">
-                                    <span>Featured</span>
+                                <div class="d-flex gap-3 mt-4 flex-wrap">
+                                    <div class="d-flex gap-2 align-items-center font-sm">
+                                        <i class="fa-light fa-location-dot"></i> {{job.locationName}}
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center font-sm">
+                                        <i class="fa-light fa-briefcase"></i> {{job.worktypeName}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex gap-3 mt-4 flex-wrap">
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-location-dot"></i> Newyork, USA
+                                <div class="font-20 fw-medium job__title mt-3 mb-2">
+                                    <a [routerLink]="['/seeker/job-details', job.id]"  aria-label="job">
+                                        {{job.title}}
+                                    </a>
                                 </div>
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-briefcase"></i> Full Time
+                                <div class="job__tags d-flex flex-wrap gap-2 mt-4">
+                                    <a >{{job.requiredSkills}}</a>
+                        
                                 </div>
-                            </div>
-                            <div class="font-20 fw-medium job__title mt-3 mb-2">
-                                <a href="job-details-1.html#" aria-label="job" class="job__title">
-                                    Software Engineer, Apple
-                                </a>
-                            </div>
-                            <div class="job__tags d-flex flex-wrap gap-2 mt-4">
-                                <a href="job-details-1.html#">Creative</a>
-                                <a href="job-details-1.html#">user interface</a>
-                                <a href="job-details-1.html#">web ui</a>
+                                <div class="job__tags d-flex flex-wrap gap-2 mt-4">
+                                    <a >{{job.salary}}</a>
+                        
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- single slide end -->
-                    <!-- single slide -->
-                    <div class="swiper-slide">
-                        <div class="rts__job__card style__five">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="company__icon">
-                                    <img src="assets/img/home-1/company/apple.svg" alt="">
-                                </div>
-                                <div class="featured__option">
-                                    <span>Featured</span>
-                                </div>
-                            </div>
-                            <div class="d-flex gap-3 mt-4 flex-wrap">
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-location-dot"></i> Newyork, USA
-                                </div>
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-briefcase"></i> Full Time
-                                </div>
-                            </div>
-                            <div class="font-20 fw-medium job__title mt-3 mb-2">
-                                <a href="job-details-1.html#" aria-label="job" class="job__title">
-                                    Software Engineer, Apple
-                                </a>
-                            </div>
-                            <div class="job__tags d-flex flex-wrap gap-2 mt-4">
-                                <a href="job-details-1.html#">Creative</a>
-                                <a href="job-details-1.html#">user interface</a>
-                                <a href="job-details-1.html#">web ui</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single slide end -->
-                    <!-- single slide -->
-                    <div class="swiper-slide">
-                        <div class="rts__job__card style__five">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="company__icon">
-                                    <img src="assets/img/home-1/company/google.svg" alt="">
-                                </div>
-                                <div class="featured__option">
-                                    <span>Featured</span>
-                                </div>
-                            </div>
-                            <div class="d-flex gap-3 mt-4 flex-wrap">
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-location-dot"></i> Newyork, USA
-                                </div>
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-briefcase"></i> Full Time
-                                </div>
-                            </div>
-                            <div class="font-20 fw-medium job__title mt-3 mb-2">
-                                <a href="job-details-1.html#" aria-label="job" class="job__title">
-                                    Software Engineer, bing
-                                </a>
-                            </div>
-                            <div class="job__tags d-flex flex-wrap gap-2 mt-4">
-                                <a href="job-details-1.html#">Creative</a>
-                                <a href="job-details-1.html#">htmx
-                                </a>
-                                <a href="job-details-1.html#">Php</a>
-                                <a href="job-details-1.html#">css</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single slide end -->
-                
-                    <!-- single slide -->
-                    <div class="swiper-slide">
-                        <div class="rts__job__card style__five">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="company__icon">
-                                    <img src="assets/img/home-1/company/in.svg" alt="">
-                                </div>
-                                <div class="featured__option">
-                                    <span>Urgent</span>
-                                </div>
-                            </div>
-                            <div class="d-flex gap-3 mt-4 flex-wrap">
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-location-dot"></i> Newyork, USA
-                                </div>
-                                <div class="d-flex gap-2 align-items-center font-sm">
-                                    <i class="fa-light fa-briefcase"></i> Full Time
-                                </div>
-                            </div>
-                            <div class="font-20 fw-medium job__title mt-3 mb-2">
-                                <a href="job-details-1.html#" aria-label="job" class="job__title">
-                                    Software Engineer, In
-                                </a>
-                            </div>
-                            <div class="job__tags d-flex flex-wrap gap-2 mt-4">
-                                <a href="job-details-1.html#">Creative</a>
-                                <a href="job-details-1.html#">user interface</a>
-                                <a href="job-details-1.html#">Python</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single slide end -->
+                    </ng-container>
+                 
                 </div>
             </div>
         </div>
