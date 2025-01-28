@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="rts__banner__wrapper d-flex gap-4 justify-content-between ">
                         <div class="rts__banner__content">
-                            <h1 class="rts__banner__title wow animated fadeInUp ">
+                            <h1 class="rts__banner__title wow animated fadeInUp">
                                 Find Your Perfect 
                                 Dream Job With 
                                 <span>Jobpath</span>
@@ -23,33 +23,81 @@
                                 Looking for a new job can be both exciting and daunting. Navigating the job market involves exploring various avenues, including online job boards.
                             </p>
                             <div class="rts__job__search wow animated fadeInUp" data-wow-delay=".2s">
-                                <form action="#" class="d-flex align-items-center flex-wrap flex-md-nowrap flex-lg-wrap flex-xl-nowrap gap-4 gap-xl-0 justify-content-between">
-                                    <div class="input-group flex-wrap d-flex gap-4">
-                                        <div class="single__input d-flex flex-column">
-                                            <label for="location">location</label>
-                                            <select name="location" class="select-nice" id="location">
-                                                <option value="1">Select Location</option>
-                                                <option value="2">Dhaka</option>
-                                                <option value="3">Barisal</option>
-                                                <option value="4">Chittagong</option>
-                                            </select>
-                                        </div>
-                                        <div class="vr d-none d-sm-block"></div>
-                                        <div class="single__input d-flex flex-column">
-                                            <label for="job__type">job type</label>
-                                            <select name="job__type" class="select-nice" id="job__type">
-                                                <option value="1">Select Job Type</option>
-                                                <option value="2">Full Time</option>
-                                                <option value="3">Part Time</option>
-                                                <option value="4">Internship</option>
-                                            </select>
-                                        </div>
+                                <form *ngIf="locations?.length && worktypes?.length && experiences?.length"
+                                [formGroup]="searchForm"
+                                (ngSubmit)="searchJobs(1)"
+                                class="p-4 bg-light rounded shadow">
+                            <div class="row g-3">
+                                <!-- Job Title -->
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="job_title" class="form-label">Job Title</label>
+                                        <input type="text" class="form-control" id="job_title" formControlName="title" placeholder="Enter job title" />
                                     </div>
-                                    <button type="submit" class="rts__btn gap-2 fill__btn job__search" aria-label="Search"><i class="fa-light fa-magnifying-glass"></i> Search Job</button>
-
-                                </form>
+                                </div>
+                          
+                                <!-- Location -->
+                                <div class="col-12 col-md-6">
+                                  <div class="form-group">
+                                    <label for="location" class="form-label">Location</label>
+                                    <div class="d-flex align-items-center gap-2">
+                                      <select class="form-select" id="location" formControlName="locationId">
+                                        <option value="">Select Location</option>
+                                        <ng-container *ngFor="let location of locations">
+                                          <option [value]="location.id">{{ location.name }}</option>
+                                        </ng-container>
+                                      </select>
+                                      <!-- Nút mở bản đồ -->
+                                      <button type="button" class="btn btn-outline-primary" (click)="openMap()">Map</button>
+                                    </div>
+                                  </div>
+                                </div>
+                          
+                                <!-- Job Type -->
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="job_type" class="form-label">Job Type</label>
+                                        <select class="form-select" id="job_type" formControlName="worktypeId">
+                                            <option value="">Select Job Type</option>
+                                            <ng-container *ngFor="let type of worktypes">
+                                                <option [value]="type.id">{{type.name}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                </div>
+                          
+                                <!-- Experience -->
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="experience" class="form-label">Experience</label>
+                                        <select class="form-select" id="experience" formControlName="experienceId">
+                                            <option value="">Select Experience</option>
+                                            <ng-container *ngFor="let ex of experiences">
+                                                <option [value]="ex.id">{{ex.name}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                </div>
+                          
+                                <!-- Search Button -->
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-primary px-5 py-2">
+                                        <i class="fa fa-search me-2"></i> Search Job
+                                    </button>
+                                </div>
+                            </div>
+                          </form>
+                          
+                          
+                          
+                          
+                          <ng-template #loading>
+                              <p>Loading search filters...</p>
+                          </ng-template>
+                          
                             </div>
                         </div>
+                        
                         <div class="rts__banner__image position-relative">
                             <figure class="banner__image">
                                 <img src="assets/img/home-1/banner/image_2x.webp" alt="banner">
@@ -70,6 +118,73 @@
                 </div>
             </div>
          </section>
+         <section class="rts__section section__padding">
+            <div class="container">
+                <div class="row justify-content-center mb-60">
+                    <div class="col-xl-6 col-lg-10">
+    <div class="rts__section__content text-center wow animated fadeInUp">
+        <h3 class="rts__section__title section__mb">There Are More Then 1000+ Jobs in Jobpath</h3>
+        <p class="rts__section__desc">From entry-level positions to executive roles browse through.</p>
+    </div>
+</div>
+                </div>
+                <div class="row g-30 wow animated fadeInUp" data-wow-delay=".0s">
+                    <!-- single job -->
+                     <ng-container *ngFor="let job of jobs">
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <div class="rts__job__card">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="company__icon">
+                                        <img src="assets/img/home-1/company/apple.svg" alt="">
+                                    </div>
+                                    <div class="featured__option">
+                                        <span>Featured</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-3 mt-4 flex-wrap">
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <i class="fa-light fa-location-dot"></i> {{job.locationName}}
+                                    </div>
+                                    <div class="d-flex gap-1 align-items-center">
+                                        <i class="fa-light fa-briefcase"></i> {{job.worktypeName}}
+                                    </div>
+                                </div>
+                                <div style="height: 60px;" class="h6 job__title my-3">
+                                    <a [routerLink]="['/seeker/job-details', job.id]" aria-label="job">
+                                        {{ job.title.length > 50 ? (job.title | slice: 0: 50) + '...' : job.title }}
+                                    </a>
+                                </div>
+                                
+                                <p>
+                                    {{ job.description.length > 100 ? (job.description | slice:0:100) + '...' : job.description }}
+                                </p>
+                                
+                                <div class="job__tags d-flex flex-wrap gap-3 mt-4">
+                                    <a href="#">{{job.requiredSkills}}</a>
+                                    
+                                </div>
+                                <div class="job__tags d-flex flex-wrap gap-3 mt-4">
+                                    <a href="#">{{job.salary}}</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                     </ng-container>
+                   
+                    <!-- single job end -->
+                    <!-- single job -->
+                   
+                </div>
+                <div class="pagination mt-4">
+                    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Trang trước</button>
+                    <span *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === currentPage">
+                      {{ page }}
+                    </span>
+                    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Trang sau</button>
+                  </div>
+                
+            </div>
+        </section>
         <!-- banner area end -->
         <!-- work process area -->
          <section class="rts__section section__padding">
@@ -412,65 +527,7 @@
         <!-- cat slider end -->
 
         <!-- current open position -->
-        <section class="rts__section section__padding">
-            <div class="container">
-                <div class="row justify-content-center mb-60">
-                    <div class="col-xl-6 col-lg-10">
-    <div class="rts__section__content text-center wow animated fadeInUp">
-        <h3 class="rts__section__title section__mb">There Are More Then 1000+ Jobs in Jobpath</h3>
-        <p class="rts__section__desc">From entry-level positions to executive roles browse through.</p>
-    </div>
-</div>
-                </div>
-                <div class="row g-30 wow animated fadeInUp" data-wow-delay=".0s">
-                    <!-- single job -->
-                     <ng-container *ngFor="let job of jobs">
-                        <div class="col-lg-6 col-xl-4 col-md-6">
-                            <div class="rts__job__card">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="company__icon">
-                                        <img src="assets/img/home-1/company/apple.svg" alt="">
-                                    </div>
-                                    <div class="featured__option">
-                                        <span>Featured</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex gap-3 mt-4 flex-wrap">
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <i class="fa-light fa-location-dot"></i> {{job.locationName}}
-                                    </div>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <i class="fa-light fa-briefcase"></i> {{job.worktypeName}}
-                                    </div>
-                                </div>
-                                <div style="height: 60px;" class="h6 job__title my-3">
-                                    <a [routerLink]="['/seeker/job-details', job.id]" aria-label="job">
-                                        {{ job.title.length > 50 ? (job.title | slice: 0: 50) + '...' : job.title }}
-                                    </a>
-                                </div>
-                                
-                                <p>
-                                    {{ job.description.length > 100 ? (job.description | slice:0:100) + '...' : job.description }}
-                                </p>
-                                
-                                <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                                    <a href="#">{{job.requiredSkills}}</a>
-                                    
-                                </div>
-                                <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                                    <a href="#">{{job.salary}}</a>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                     </ng-container>
-                   
-                    <!-- single job end -->
-                    <!-- single job -->
-                   
-                </div>
-            </div>
-        </section>
+  
         <!-- current open position end -->
 
         <!-- what we are -->
@@ -1012,9 +1069,21 @@
       </div>
     </div>
 </div>
-
-
-  
-  
+<div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mapModalLabel">Select Location on Map</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-map (locationSelected)="onLocationSelected($event)"></app-map>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <p-toast></p-toast>

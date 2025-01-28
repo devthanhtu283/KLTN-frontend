@@ -19,3 +19,18 @@ export class Job {
     requiredSkills: string;
     member: string;
 }
+export class Location{
+    id: number;
+    name: string;
+    status: boolean;
+}
+export class Experience{
+    id: number;
+    name: string;
+    status: boolean;
+}
+export class Worktype{
+    id: number;
+    name: string;
+    status: boolean;
+}
