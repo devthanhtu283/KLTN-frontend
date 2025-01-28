@@ -10507,22 +10507,63 @@ input::placeholder {
 .typing-indicator span {
   margin-left: 10px;
 }
-input.glass {
-  height: 30px;
+/* ✅ Tạo kiểu cho container của thanh tìm kiếm */
+.leaflet-control-geosearch {
+  position: absolute !important;
+  top: 10px; 
+  right: 10px; 
+  background: rgba(255, 255, 255, 0.9); /* Nền trắng mờ */
+  padding: 8px;
+  border-radius: 8px; /* Bo góc mượt mà */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+  z-index: 1000 !important;
+  display: flex;
+  align-items: center;
 }
-div.result{
-  color: red;
+
+/* ✅ Điều chỉnh input tìm kiếm */
+.leaflet-control-geosearch input {
+  width: 220px; /* Giảm chiều rộng để trông gọn hơn */
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
 }
-.leaflet-top.leaflet-right{
-  background-color: white;
+
+.leaflet-control-geosearch input:focus {
+  border-color: #0078a8;
+  box-shadow: 0 0 5px rgba(0, 120, 168, 0.5);
 }
-button.reset{
-  height: 20px;
-  width: 20px;
+
+/* ✅ Nút reset tìm kiếm */
+button.reset {
+  height: 25px;
+  width: 25px;
+  border: none;
+  background: #0078a8;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;  
+  font-size: 12px;
+  margin-left: 8px;
+  transition: background 0.3s ease-in-out;
 }
-div.results.active{
+
+button.reset:hover {
+  background: #005f87;
+}
+
+/* ✅ Điều chỉnh danh sách kết quả tìm kiếm */
+div.results.active {
+  background: white;
+  padding: 5px;
+  border-radius: 5px;
   color: black;
+  font-size: 14px;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .single__cat {
   height: 120px; /* Đặt chiều cao cố định cho toàn bộ danh mục */
@@ -10575,4 +10616,28 @@ div.results.active{
 
 .single__cat__link .title:hover {
   color: #007bff;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button, .pagination span {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination span.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

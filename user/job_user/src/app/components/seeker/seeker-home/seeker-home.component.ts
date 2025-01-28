@@ -1,5 +1,5 @@
 import { UserService } from '../../../services/user.service';
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { MessageService } from 'primeng/api';
@@ -7,7 +7,8 @@ import { CreateUser, User } from 'src/app/models/user.model';
 import { DatePipe } from '@angular/common';
 import * as $ from 'jquery';
 import { JobService } from 'src/app/services/job.service';
-import { Job } from 'src/app/models/job.model';
+import { Experience, Job, Location, Worktype } from 'src/app/models/job.model';
+import { MapComponent } from '../test/map.component';
 
 @Component({
     templateUrl: "./seeker-home.component.html",
@@ -15,7 +16,9 @@ import { Job } from 'src/app/models/job.model';
 
   })
 export class SeekerHomeComponent implements OnInit{
-  currentForm: string = 'candidate'; // Ban đầu hiển thị form candidate
+  @ViewChild(MapComponent) mapComponent!: MapComponent;
+
+  currentForm: string = 'candidate'; 
   registerCandidateForm: FormGroup;
   registerEmployerForm: FormGroup;
   checkEmailForm: FormGroup;
@@ -29,13 +32,21 @@ export class SeekerHomeComponent implements OnInit{
   showForgotModal = true;
   showResetPasswordModal = false;
   jobs: Job[];
+  currentPage: number = 1;
+  totalPages: number = 1;
+  locations: Location[];
+  worktypes: Worktype[];
+  experiences: Experience[];
+  searchForm: FormGroup;
+  isSearching: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
     private messageService: MessageService,
     private datePipe: DatePipe,
-    private jobService: JobService
+    private jobService: JobService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.registerCandidateForm = this.formBuilder.group({
       candidateName: ['', [Validators.required]],
@@ -56,23 +67,92 @@ export class SeekerHomeComponent implements OnInit{
     this.checkEmailForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
+    this.searchForm = this.formBuilder.group({
+      title: [''],
+      locationId: [''],
+      worktypeId: [''],
+      experienceId: ['']
+    });
   }
 
   ngOnInit(): void {
     this.showForm(this.currentForm);
-    this.jobService.findAll().then(
+    this.loadJobs(this.currentPage);
+    this.jobService.locationFindAll().then(
       res => {
-        this.jobs = res;
-        console.log(this.jobs);
-        console.log(res);
+        this.locations = res.filter((location: any) => location.status === true);
+        console.log(this.locations);
+        this.changeDetectorRef.detectChanges(); 
+
+      }
+    );
+    this.jobService.worktypeFindAll().then(
+      res => {
+        this.worktypes = res.filter((worktype: any) => worktype.status === true);
+        console.log(this.worktypes);
+        this.changeDetectorRef.detectChanges(); 
+      }
+    );
+    this.jobService.experienceFindAll().then(
+      res => {
+        this.experiences = res.filter((experience: any) => experience.status === true);
+        this.changeDetectorRef.detectChanges(); 
       }
     );
   }
-
-  showForm(form: string) {
-    this.currentForm = form; // Cập nhật form hiện tại
+  loadJobs(page: number){
+    if (this.isSearching) {
+      this.searchJobs(page);
+    } else {
+      this.jobService.findAllPagination(page).subscribe(res => {
+        this.jobs = res.content;
+        this.totalPages = res.totalPages;
+      });
+    }
   }
 
+  searchJobs(page: number = 1): void {
+    this.isSearching = true; 
+    const searchParams = this.searchForm.value;
+
+    this.jobService.searchJobs(
+      searchParams.title, 
+      searchParams.locationId, 
+      searchParams.worktypeId, 
+      searchParams.experienceId, 
+      page, 6 
+    ).subscribe(
+      (res) => {
+        this.jobs = res.content; 
+        this.totalPages = res.totalPages; 
+        this.currentPage = page; 
+        console.log('Found Jobs:', this.jobs);
+      },
+      (error) => console.error('Search Error:', error)
+    );
+  }
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) return; 
+    this.currentPage = page;
+    this.loadJobs(this.currentPage);
+  }
+  getPages(): number[] {
+    const pages = [];
+    for (let i = 1; i <= this.totalPages; i++) {
+      pages.push(i);
+    }
+    return pages;
+  }
+  showForm(form: string) {
+    this.currentForm = form; 
+  }
+  onLocationSelected(event: { lat: number; lng: number }): void {
+    console.log('Selected Location:', event);
+   
+  }
+  openMap(): void {
+    this.mapComponent.openMap();
+  }
 
   // Hàm đăng kí cho ứng viên 
   registerCandidate() {
