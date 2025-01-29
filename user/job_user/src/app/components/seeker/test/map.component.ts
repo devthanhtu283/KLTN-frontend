@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import * as L from 'leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-import * as bootstrap from 'bootstrap';
+// import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-map',
@@ -24,8 +24,8 @@ export class MapComponent implements AfterViewInit {
 
   openMap(): void {
     const modalElement = document.getElementById('mapModal') as HTMLElement;
-    const modal = new bootstrap.Modal(modalElement, { backdrop: 'static' });
-    modal.show();
+    // const modal = new bootstrap.Modal(modalElement, { backdrop: 'static' });
+    // modal.show();
   }
 
   private initMap(): void {

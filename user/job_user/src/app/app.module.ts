@@ -45,7 +45,11 @@ import { EmployerAlertsComponent } from './components/employer/employer-alerts/e
 import { EmployerMeetingComponent } from './components/employer/employer-meeting/employer-meeting.component';
 import { EmployerPricingComponent } from './components/employer/employer-pricing/employer-pricing.component';
 import { JobService } from './services/job.service';
+
 import { MapComponent } from './components/seeker/test/map.component';
+import { ApplicationService } from './services/application.service';
+import { TimeAgoPipe } from './time-ago.pipe';
+
 // import { MapComponent } from './components/test/map.component';
 
 
@@ -96,7 +100,8 @@ import { MapComponent } from './components/seeker/test/map.component';
 
     
     // MapComponent
-    MapComponent
+    MapComponent,
+            TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -113,7 +118,8 @@ import { MapComponent } from './components/seeker/test/map.component';
     BaseUrl,
     MessageService,
     DatePipe,
-    JobService
+    JobService,
+    ApplicationService
   ],
   bootstrap: [AppComponent]
 })
