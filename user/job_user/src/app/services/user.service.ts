@@ -22,6 +22,11 @@ export class UserService{
         + 'register', user));
     }
 
+    async findById(id: number) : Promise<any>{
+        return await lastValueFrom(this.httpClient.get(this.baseUrl.getUrlUser()
+        + 'findById/' + id));
+    }
+
     async sendEmail(email: any) : Promise<any> {
         return await lastValueFrom(this.httpClient.post(this.baseUrl.getUrlUser()
         + 'sendEmail', email));
