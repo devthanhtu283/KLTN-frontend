@@ -1,6 +1,27 @@
 <h1>Bài thi {{ title }}</h1>
+<p-toast></p-toast>
 <main class="overflow-hidden">
-  <div *ngIf="!showResultPage">
+  <!-- Màn hình hướng dẫn -->
+  <div *ngIf="!startTest">
+    <div class="instruction-container">
+      <h2>Chào bạn!</h2>
+      <p>
+        Đây là bài thi của công ty <strong>{{ companyName }}</strong>.
+      </p>
+      <p>
+        Bài thi bao gồm <strong>{{ totalSteps }}</strong> câu hỏi và bạn có
+        <strong>30 phút</strong> để hoàn thành.
+      </p>
+      <p>Hãy chuẩn bị sẵn sàng và nhấn nút "Bắt đầu" để bắt đầu làm bài.</p>
+      <button (click)="startTest = true; startTimer()" class="start-btn">
+        Bắt đầu
+      </button>
+    </div>
+  </div>
+
+  <!-- Phần bài thi -->
+  <div *ngIf="startTest && !showResultPage">
+    <!-- Phần bài thi hiện tại của bạn -->
     <div class="step-number">
       <div class="step-number-inner">
         Câu hỏi <span id="activeStep">{{ now + 1 }}</span
@@ -15,7 +36,6 @@
             <img src="assets/images/2 - Copy.png" height="400" alt="side-img" />
           </div>
 
-      
           <div class="step-bar">
             <div *ngFor="let step of steps; let i = index" class="bar">
               <div [class.w-100]="i <= now" class="fill"></div>
@@ -29,7 +49,6 @@
               <h2 class="q-heading">{{ getCurrentStep().content }}</h2>
 
               <div class="form-inner">
-           
                 <div *ngIf="getCurrentStep().questionType === 'choiceAnswer'">
                   <div
                     *ngFor="let option of getCurrentStep().answers"
@@ -46,7 +65,6 @@
                     <label>{{ option.content }}</label>
                   </div>
                 </div>
-
 
                 <div *ngIf="getCurrentStep().questionType === 'textAnswer'">
                   <textarea
@@ -85,34 +103,16 @@
     </div>
   </div>
 
-
-  <div *ngIf="showResultPage" >
+  <!-- Phần kết quả -->
+  <div *ngIf="showResultPage">
     <div class="result_inner">
-      <h2 class="result_title">Knowledge Check</h2>
-    <div class="u_result">
-        <div class="u_score">Your Score:</div>
-        <div class="u_prcnt">{{ userScore }} / {{ maxScore }}</div>
-        <span class="u_points">{{ userScore }} Points</span>
-    </div>
-    <div class="p_result">
-        <div class="p_score">Passing Score:</div>
-        <div class="p_prcnt">{{ userScore / maxScore * 100}}%</div>
-       
-    </div>
+      <h2 class="result_title">Chúc mừng bạn đã hoàn thành bài test!</h2>
+      <p>Kết quả bài test sẽ được nhà tuyển dụng xem xét và đánh giá.</p>
 
-      <div class="result_show">
-        <h2>Result</h2>
-        <div class="pass_check" class="text-success" *ngIf="isPassed()">You Passed!</div>
-        <div class="pass_check" *ngIf="!isPassed()">You did not Pass</div>
-     
-        <h3>Your Answers</h3>
-        <div *ngFor="let step of steps; let i = index" class="text-answer">
-          <div *ngIf="step.questionType === 'textAnswer'">
-            <strong>Question {{ i + 1 }}:</strong> {{ step.content }}<br />
-            <strong>Your Answer:</strong> {{ textAnswers[i + 1] }}
-          </div>
-        </div>
-      </div>
+      <!-- Nút trở về Web job -->
+      <button (click)="goToJobWeb()" class="return-btn">
+        Trở về Web job
+      </button>
     </div>
   </div>
 </main>

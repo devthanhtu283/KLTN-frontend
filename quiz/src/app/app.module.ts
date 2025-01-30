@@ -13,6 +13,11 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { UserService } from './services/user.service';
 import { TestService } from './services/test.service';
 import { QuestionService } from './services/question.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TestHistoryService } from './services/testHistory.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,14 +29,18 @@ import { QuestionService } from './services/question.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule,
+    BrowserAnimationsModule
    
   ],
   providers: [
     UserService,
     BaseUrlService,
     TestService,
-    QuestionService
+    QuestionService,
+    MessageService,
+    TestHistoryService
   ],
   bootstrap: [AppComponent]
 })
