@@ -12,7 +12,7 @@ export class TestService{
     ){}
 
     async findTestByCode(code: string) : Promise<any>{
-        return await lastValueFrom(this.httpClient.get(this.baseUrlService.getBaseUrl()
+        return await lastValueFrom(this.httpClient.get(this.baseUrlService.getQuizBaseUrl()
         + 'test/findTestByCode/' + code));
     }
 }

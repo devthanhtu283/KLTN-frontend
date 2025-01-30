@@ -7,7 +7,7 @@ import { CodeComponent } from './components/code/code.component';
 const routes: Routes = [
   {
     path: "",
-    component: TestComponent,
+    component: LoginComponent,
   },
   {
     path: "test/:code",

@@ -12,7 +12,7 @@ export class QuestionService{
     ){}
 
     async findByTestID(testID: number) : Promise<any>{
-        return await lastValueFrom(this.httpClient.get(this.baseUrlService.getBaseUrl()
+        return await lastValueFrom(this.httpClient.get(this.baseUrlService.getQuizBaseUrl()
         + 'question/findByTestID/' + testID));
     }
 }
