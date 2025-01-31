@@ -26,5 +26,34 @@ export class ApplicationService {
       return await lastValueFrom(this.httpClient.get(this.baseUrl.getUrlApplication()
       + 'findById/' + applicationId));
     }
+
+    async authUrl(): Promise<any> {
+      return await lastValueFrom(this.httpClient.get(this.baseUrl.getUrlApplication()
+      + 'auth-url'));
+    }
+
+    async checkAuth(): Promise<any> {
+      return await lastValueFrom(this.httpClient.get(this.baseUrl.getUrlApplication()
+      + 'check-auth'));
+    }
+
+    async sendAuthCode(code: string): Promise<any> {
+      return await lastValueFrom(this.httpClient.post(`${this.baseUrl.getUrlApplication()}oauth-callback?code=${code}`, {}));
+    }
+
+    async saveEventData(eventData: any): Promise<any> {
+      return await lastValueFrom(this.httpClient.post(this.baseUrl.getUrlApplication()
+      + 'save-event', eventData));
+    }
+
+    async getEventData(): Promise<any> {
+      return await lastValueFrom(this.httpClient.get(this.baseUrl.getUrlApplication()
+      + 'get-saved-event'));
+    }
+
+    async createMeeting(meeting: any): Promise<any> {
+      return await lastValueFrom(this.httpClient.post(this.baseUrl.getUrlApplication()
+      + 'create-event', meeting));
+    }
   
 }

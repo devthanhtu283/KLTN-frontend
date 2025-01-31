@@ -3,16 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { BaseUrl } from './baseUrl.service';
 import { BehaviorSubject, lastValueFrom } from "rxjs";
 import { Employee, Seeker, User } from '../models/user.model';
-@Injectable()
-export class UserService{
-    private userSubject = new BehaviorSubject<any>(null);
+@Injectable({
+    providedIn: 'root',
+})
+export class UserService {
     constructor(
         private baseUrl: BaseUrl,
         private httpClient: HttpClient
 
     ){}
 
-    async login(user: any): Promise<any>{
+    async login(user: any): Promise<any> {
         return await lastValueFrom(this.httpClient.post(this.baseUrl.getUrlUser()
         + 'login', user));
     }
@@ -42,7 +43,7 @@ export class UserService{
     async findByEmail(email: string) : Promise<User> {
         const encodedEmail = encodeURIComponent(email);
 
-        return await lastValueFrom(this.httpClient.get<any>(`${this.baseUrl.getUrlUser()}findByEmail?email=${encodedEmail}`));
+        return await lastValueFrom(this.httpClient.get<any>(`${this.baseUrl.getUrlUser()}findByEmail/${encodedEmail}`));
     }
 
     async update(user: User) : Promise<any>{
@@ -52,10 +53,6 @@ export class UserService{
     async test(form: FormData) : Promise<any>{
         return await lastValueFrom(this .httpClient.post(this.baseUrl.getUrlUser()
         + 'upload', form));
-    }
-
-    getAccount() {
-        return this.userSubject.asObservable();
     }
 
     async updateCandidate(formData: FormData): Promise<any> {
