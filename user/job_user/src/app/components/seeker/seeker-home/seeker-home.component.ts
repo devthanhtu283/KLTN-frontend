@@ -1,3 +1,4 @@
+import { ApplicationService } from './../../../services/application.service';
 import { UserService } from '../../../services/user.service';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -46,6 +47,7 @@ export class SeekerHomeComponent implements OnInit{
     private messageService: MessageService,
     private datePipe: DatePipe,
     private jobService: JobService,
+    private applicationService: ApplicationService,
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.registerCandidateForm = this.formBuilder.group({
@@ -99,6 +101,7 @@ export class SeekerHomeComponent implements OnInit{
         this.changeDetectorRef.detectChanges(); 
       }
     );
+    this.login();
   }
   loadJobs(page: number){
     if (this.isSearching) {
@@ -355,7 +358,7 @@ export class SeekerHomeComponent implements OnInit{
         severity: 'error',
         summary: 'Lỗi kết nối',
         detail: 'Đã xảy ra lỗi khi kết nối tới máy chủ. Vui lòng thử lại sau.'
-      });
+      }); 
     }
   }
 
