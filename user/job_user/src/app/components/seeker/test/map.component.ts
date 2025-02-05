@@ -23,7 +23,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   openMap(): void {
-    const modalElement = document.getElementById('mapModal') as HTMLElement;
+    // const modalElement = document.getElementById('mapModal') as HTMLElement;
     // const modal = new bootstrap.Modal(modalElement, { backdrop: 'static' });
     // modal.show();
   }

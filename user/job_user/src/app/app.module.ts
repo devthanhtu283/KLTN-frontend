@@ -49,6 +49,8 @@ import { JobService } from './services/job.service';
 import { MapComponent } from './components/seeker/test/map.component';
 import { ApplicationService } from './services/application.service';
 import { TimeAgoPipe } from './time-ago.pipe';
+import { SeekerListJobsComponent } from './components/seeker/seeker-list-jobs/seeker-list-jobs.component';
+import { SeekerFavoriteComponent } from './components/seeker/seeker-favorite/seeker-favorite.component';
 
 // import { MapComponent } from './components/test/map.component';
 
@@ -74,6 +76,8 @@ import { TimeAgoPipe } from './time-ago.pipe';
     SeekerMeetingComponent,
     SeekerJobDetailsComponent,
     SeekerContactComponent,
+    SeekerListJobsComponent,
+    SeekerFavoriteComponent,
     /////////////////
 
     /////////////////

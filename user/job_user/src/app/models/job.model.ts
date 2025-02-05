@@ -18,6 +18,7 @@ export class Job {
     postedExpired: string;
     requiredSkills: string;
     member: string;
+    checkFavorited: boolean;
 }
 export class Location{
     id: number;

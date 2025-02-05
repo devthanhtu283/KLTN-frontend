@@ -66,4 +66,24 @@ export class JobService {
 
     return this.http.get(this.baseUrl.getUrlJob() + 'searchJobs', { params });
   }
+  async skillFindAll(): Promise<any> {
+    return await lastValueFrom(
+      this.http.get(this.baseUrl.getUrlJob() + 'skill/findAll')
+    );
+  }
+  async favoriteFindBySeekerIdPagination(seekerId: number, page: number): Promise<any> {
+    return await lastValueFrom(
+      this.http.get(this.baseUrl.getUrlJob() + 'favorite/findBySeekerIdPagination/' + seekerId + '?page=' + page)
+    );
+  }
+  async favoriteCreate(favorite: any): Promise<any> {
+    return await lastValueFrom(
+      this.http.post(this.baseUrl.getUrlJob() + 'favorite/create', favorite)
+    );
+  }
+  async favoriteCheckExists(jobId: number, seekerId: number): Promise<any> {
+    return lastValueFrom(this.http.get(
+      this.baseUrl.getUrlJob() + 'favorite/checkExists/' + jobId + '/' + seekerId
+    ));
+}
 }
