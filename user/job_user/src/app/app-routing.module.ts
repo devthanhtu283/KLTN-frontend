@@ -35,6 +35,7 @@ import { EmployerMessageComponent } from './components/employer/employer-message
 import { EmployerAlertsComponent } from './components/employer/employer-alerts/employer-alerts.component.';
 import { EmployerMeetingComponent } from './components/employer/employer-meeting/employer-meeting.component';
 import { EmployerPricingComponent } from './components/employer/employer-pricing/employer-pricing.component';
+import { SeekerFavoriteComponent } from './components/seeker/seeker-favorite/seeker-favorite.component';
 // import { MapComponent } from './components/test/map.component';
 
 
@@ -107,6 +108,11 @@ const routes: Routes = [
       {
         path: "applied-job",
         component: SeekerAppliedJobsComponent,
+      },
+      
+      {
+        path: "favorite",
+        component: SeekerFavoriteComponent,
       },
       {
         path: "shortlist-job",
