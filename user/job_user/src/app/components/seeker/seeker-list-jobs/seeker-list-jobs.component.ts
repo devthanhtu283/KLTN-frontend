@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Experience, Location, Worktype } from 'src/app/models/job.model';
+import { BaseUrl } from 'src/app/services/baseUrl.service';
 import { JobService } from 'src/app/services/job.service';
 
 @Component({
@@ -19,16 +20,19 @@ export class SeekerListJobsComponent implements OnInit {
   experiences: Experience[];
   searchForm: FormGroup;
   seekerId: number;
+  imgBaseUrl: string;
   constructor(
     private router: Router,
     private cdr: ChangeDetectorRef,
     private jobService: JobService,
     private changeDetectorRef: ChangeDetectorRef,
     private fb: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private baseUrl: BaseUrl
   ) {}
 
   ngOnInit(): void {
+    this.imgBaseUrl = this.baseUrl.getJobImageUrl();
     const seekerInfo = localStorage.getItem('candidate');
     const seeker = JSON.parse(seekerInfo);
     this.seekerId = seeker.data.id;

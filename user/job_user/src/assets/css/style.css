@@ -6138,7 +6138,7 @@ input::placeholder {
   height: 120px;
   min-width: 120px;
   border-radius: 50%;
-  background-color: var(--rts-gray);
+  background-color: white;
   display: flex;
   justify-content: center;
   transition: var(--transition);
@@ -6154,8 +6154,8 @@ input::placeholder {
 .rts__job__card__big .company__icon img,
 .rts__author__card__big .company__icon img,
 .rts__author__card .company__icon img {
-  height: 65px;
-  width: 65px;
+  /* height: 65px; */
+  width: 85px;
 }
 .rts__job__card__big .job__meta,
 .rts__author__card__big .job__meta,
@@ -7448,6 +7448,7 @@ input::placeholder {
 }
 .swiper-slide {
   transform: none;
+  width: 300px;
 }
 .timeline {
   position: relative;

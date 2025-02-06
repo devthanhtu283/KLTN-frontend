@@ -12,16 +12,14 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="rts__banner__wrapper d-flex gap-4 justify-content-between ">
+                    <div class="rts__banner__wrapper d-flex gap-2 justify-content-between ">
                         <div class="rts__banner__content">
                             <h1 class="rts__banner__title wow animated fadeInUp">
-                                Find Your Perfect 
-                                Dream Job With 
-                                <span>Jobpath</span>
+                                TÌM CÔNG VIỆC MƠ ƯỚC CỦA BẠN VỚI 
+                                <span>TJOBS</span>
                             </h1>
                             <p class="rts__banner__desc my-40 wow animated fadeInUp" data-wow-delay=".1s">
-                                Looking for a new job can be both exciting and daunting. Navigating the job market involves exploring various avenues, including online job boards.
-                            </p>
+                                Khám phá những con đường sự nghiệp mới, đặc biệt là thông qua hệ thống TJobs, cam kết mang lại cơ hội việc làm cao nhất, uy tín nhất!</p>
                             <div class="rts__job__search wow animated fadeInUp" data-wow-delay=".2s">
                                 <form *ngIf="locations?.length && worktypes?.length && experiences?.length"
                                 [formGroup]="searchForm"
@@ -31,18 +29,18 @@
                                 <!-- Job Title -->
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="job_title" class="form-label">Job Title</label>
-                                        <input type="text" class="form-control" id="job_title" formControlName="title" placeholder="Enter job title" />
+                                        <label for="job_title" class="form-label">Tiêu đề công việc</label>
+                                        <input type="text" class="form-control" id="job_title" formControlName="title" placeholder="Nhập tiêu đề" />
                                     </div>
                                 </div>
                           
                                 <!-- Location -->
                                 <div class="col-12 col-md-6">
                                   <div class="form-group">
-                                    <label for="location" class="form-label">Location</label>
+                                    <label for="location" class="form-label">Vị trí</label>
                                     <div class="d-flex align-items-center gap-2">
                                       <select class="form-select" id="location" formControlName="locationId">
-                                        <option value="">Select Location</option>
+                                        <option value="">Chọn vị trí</option>
                                         <ng-container *ngFor="let location of locations">
                                           <option [value]="location.id">{{ location.name }}</option>
                                         </ng-container>
@@ -56,9 +54,9 @@
                                 <!-- Job Type -->
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="job_type" class="form-label">Job Type</label>
+                                        <label for="job_type" class="form-label">Hình thức làm việc</label>
                                         <select class="form-select" id="job_type" formControlName="worktypeId">
-                                            <option value="">Select Job Type</option>
+                                            <option value="">Chọn hình thức</option>
                                             <ng-container *ngFor="let type of worktypes">
                                                 <option [value]="type.id">{{type.name}}</option>
                                             </ng-container>
@@ -69,9 +67,9 @@
                                 <!-- Experience -->
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="experience" class="form-label">Experience</label>
+                                        <label for="experience" class="form-label">Kinh nghiệm</label>
                                         <select class="form-select" id="experience" formControlName="experienceId">
-                                            <option value="">Select Experience</option>
+                                            <option value="">Chọn kinh nghiệm</option>
                                             <ng-container *ngFor="let ex of experiences">
                                                 <option [value]="ex.id">{{ex.name}}</option>
                                             </ng-container>
@@ -82,7 +80,7 @@
                                 <!-- Search Button -->
                                 <div class="col-12 text-center mt-4">
                                     <button type="submit" class="btn btn-primary px-5 py-2">
-                                        <i class="fa fa-search me-2"></i> Search Job
+                                        <i class="fa fa-search me-2"></i> Tìm việc
                                     </button>
                                 </div>
                             </div>
@@ -123,8 +121,8 @@
                 <div class="row justify-content-center mb-60">
                     <div class="col-xl-6 col-lg-10">
     <div class="rts__section__content text-center wow animated fadeInUp">
-        <h3 class="rts__section__title section__mb">There Are More Then 1000+ Jobs in Jobpath</h3>
-        <p class="rts__section__desc">From entry-level positions to executive roles browse through.</p>
+        <h3 class="rts__section__title section__mb">Có hơn 1000+ việc làm tại TJobs</h3>
+        <p class="rts__section__desc">Khám phá các cơ hội việc làm từ cấp nhân viên đến vị trí lãnh đạo. </p>
     </div>
 </div>
                 </div>
@@ -135,10 +133,10 @@
                             <div class="rts__job__card">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="company__icon">
-                                        <img src="assets/img/home-1/company/apple.svg" alt="">
+                                        <img src="{{imgBaseUrl + job.employerLogo}}" alt="">
                                     </div>
                                     <div class="featured__option">
-                                        <span>Featured</span>
+                                        <span>{{job.employerName}}</span>
                                     </div>
                                 </div>
                                 <div class="d-flex gap-3 mt-4 flex-wrap">
@@ -156,7 +154,7 @@
                                 </div>
                                 
                                 <p>
-                                    {{ job.description.length > 100 ? (job.description | slice:0:100) + '...' : job.description }}
+                                    {{ job.description.length > 90 ? (job.description | slice:0:90) + '...' : job.description }}
                                 </p>
                                 
                                 <div class="job__tags d-flex flex-wrap gap-3 mt-4">
