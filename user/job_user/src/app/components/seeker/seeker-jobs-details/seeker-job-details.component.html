@@ -7,7 +7,7 @@
                     <div class="rts__job__card__big bg-transparent p-0 position-relative z-1 flex-wrap justify-content-between d-flex gap-4 align-items-center">
                         <div class="d-flex gap-4 align-items-center flex-md-row flex-column mx-auto mx-md-0">
                             <div class="company__icon rounded-2 bg-white">
-                                <img class="" src="assets/img/home-1/company/apple.svg" alt="">
+                                <img class="" src="{{imgBaseUrl + job.employerLogo}}" alt="">
                             </div>
                             <div class="job__meta w-100 d-flex text-center text-md-start flex-column gap-2">
                                 <div class="">
@@ -18,14 +18,14 @@
                                         <i class="fa-light fa-location-dot"></i> {{job.locationName}}
                                     </div>
                                     <div class="d-flex gap-2 align-items-center">
-                                        <i class="fa-light rt-briefcase"></i> {{job.worktypeName}}
+                                        <i class="fa-light fa-briefcase"></i> {{job.worktypeName}}
                                     </div>
                                     <div class="d-flex gap-2 align-items-center">
                                         <i class="fa-light fa-clock"></i> {{ job.postedExpired | date:'dd/MM/yyyy' }}
 
                                     </div>
                                     <div class="d-flex gap-2 fw-medium align-items-center">
-                                        <i class="fa-light rt-price-tag"></i> {{job.salary}}
+                                        <i class="fa-light fa-dollar-sign"></i> {{job.salary}}
                                     </div>
                                 </div>
                                 <div class="job__tags d-flex justify-content-center justify-content-md-start flex-wrap gap-3">
@@ -141,7 +141,7 @@
                <div class="col-lg-4 d-flex flex-column gap-40">
                     <div class="company__card">
                         <div class="icon">
-                            <img src="assets/img/icon/microsoft.svg" alt="">
+                            <img src="{{imgBaseUrl + job.employerLogo}}" alt="">
                         </div>
                         <h5 class="company__name mt-20">{{job.employerName}}</h5>
                         <a href="job-details-1.html#" class="company__link d-block mt-20" aria-label="Visit Website" target="_blank">Visit Website</a>
@@ -152,7 +152,7 @@
                         <div class="job__overview__content">
                             <ul>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
-                                    <span class="left-text"> <i class="rt-calender"></i> Date Posted</span>
+                                    <span class="left-text"> <i class="fa-light fa-clock"></i> Date Posted</span>
                                     <span class="text">{{job.postedAt | date:'dd/MM/yyyy'}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
@@ -160,11 +160,11 @@
                                     <span class="text">: {{job.member}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
-                                    <span class="left-text"> <i class="rt-experience"></i> Experience</span>
+                                    <span class="left-text"> <i class="fa-light fa-chart-line"></i> Experience</span>
                                     <span class="text">: {{job.experienceName}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
-                                    <span class="left-text"> <i class="rt-price-tag"></i> Offered Salary</span>
+                                    <span class="left-text"> <i class="fa-light fa-dollar-sign"></i> Offered Salary</span>
                                     <span class="text">: {{job.salary}}</span>
                                 </li>
                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
@@ -266,11 +266,11 @@
                 <div class="swiper-wrapper">
                     <!-- single slide -->
                     <ng-container *ngFor="let job of jobs">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide" style="width: 300px;">
                             <div class="rts__job__card style__five">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="company__icon">
-                                        <img src="assets/img/home-1/company/microsoft.svg" alt="">
+                                        <img src="{{imgBaseUrl + job.employerLogo}}" alt="">
                                     </div>
                                     <div class="featured__option">
                                         <span>Featured</span>
@@ -286,8 +286,11 @@
                                 </div>
                                 <div class="font-20 fw-medium job__title mt-3 mb-2">
                                     <a [routerLink]="['/seeker/job-details', job.id]"  aria-label="job">
-                                        {{job.title}}
+                                        {{ job.title.length > 40 ? (job.title | slice:0:40) + '...' : job.title }}
                                     </a>
+                                </div>
+                                <div class="d-flex gap-2 align-items-center font-sm">
+                                    {{ job.description.length > 90 ? (job.description | slice:0:90) + '...' : job.description }}
                                 </div>
                                 <div class="job__tags d-flex flex-wrap gap-2 mt-4">
                                     <a >{{job.requiredSkills}}</a>

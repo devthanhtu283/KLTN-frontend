@@ -5,6 +5,7 @@ export class BaseUrl {
     private urlUserService: string = "http://localhost:8080/user/";
     private urlJobService: string = "http://localhost:8080/job/";
     private urlApplicationService: string = "http://localhost:8080/application/";
+    private jobImageUrl: string=  "http://localhost:8080/job-static/assets/images/";
     getUrlUser(): string {
         return this.urlUserService;
     }
@@ -16,6 +17,10 @@ export class BaseUrl {
 
     getUrlApplication(): string {
         return this.urlApplicationService;
+    }
+
+    getJobImageUrl(): string{
+        return this.jobImageUrl;
     }
 
 } 

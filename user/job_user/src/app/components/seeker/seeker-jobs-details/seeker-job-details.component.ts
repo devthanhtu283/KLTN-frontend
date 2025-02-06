@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Job } from "src/app/models/job.model";
 import { User } from 'src/app/models/user.model';
+import { BaseUrl } from "src/app/services/baseUrl.service";
 import { JobService } from "src/app/services/job.service";
 import { UserService } from "src/app/services/user.service";
 
@@ -13,16 +14,19 @@ export class SeekerJobDetailsComponent implements OnInit {
   job: Job;
   jobs: Job[] = [];
   user: User;
-
+  imgBaseUrl: string;
   constructor(
     private userService: UserService,
     private router: Router,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private jobService: JobService
+    private jobService: JobService,
+    private baseUrl: BaseUrl
   ) {}
 
   ngOnInit(): void {
+   
+    this.imgBaseUrl = this.baseUrl.getJobImageUrl();
     // Lắng nghe sự thay đổi của param 'id'
     this.route.params.subscribe(params => {
       this.jobId = params['id'];
@@ -34,6 +38,7 @@ export class SeekerJobDetailsComponent implements OnInit {
 
     // Lấy danh sách tất cả các công việc
     this.loadAllJobs();
+    console.log(this.jobs);
   }
 
   // Hàm tải thông tin công việc chi tiết

@@ -10,6 +10,7 @@ import * as $ from 'jquery';
 import { JobService } from 'src/app/services/job.service';
 import { Experience, Job, Location, Worktype } from 'src/app/models/job.model';
 import { MapComponent } from '../test/map.component';
+import { BaseUrl } from 'src/app/services/baseUrl.service';
 
 @Component({
     templateUrl: "./seeker-home.component.html",
@@ -28,6 +29,7 @@ export class SeekerHomeComponent implements OnInit{
   experiences: Experience[];
   searchForm: FormGroup;
   isSearching: boolean = false;
+  imgBaseUrl: string;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -37,6 +39,7 @@ export class SeekerHomeComponent implements OnInit{
     private jobService: JobService,
     private applicationService: ApplicationService,
     private changeDetectorRef: ChangeDetectorRef,
+    private baseUrl: BaseUrl
   ) {
    
     this.searchForm = this.formBuilder.group({
@@ -48,7 +51,9 @@ export class SeekerHomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
- 
+    console.log(this.baseUrl.getJobImageUrl());
+    this.imgBaseUrl = this.baseUrl.getJobImageUrl();
+    console.log(this.imgBaseUrl);
     this.loadJobs(this.currentPage);
     this.jobService.locationFindAll().then(
       res => {
@@ -80,6 +85,8 @@ export class SeekerHomeComponent implements OnInit{
       this.jobService.findAllPagination(page).subscribe(res => {
         this.jobs = res.content;
         this.totalPages = res.totalPages;
+        console.log(this.jobs);
+        
       });
     }
   }

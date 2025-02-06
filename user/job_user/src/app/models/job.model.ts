@@ -19,6 +19,7 @@ export class Job {
     requiredSkills: string;
     member: string;
     checkFavorited: boolean;
+    employerLogo: string;
 }
 export class Location{
     id: number;
