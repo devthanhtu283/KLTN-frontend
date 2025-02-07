@@ -168,7 +168,21 @@
             <!-- sidebar menu end -->
             <div class="d-flex justify-content-between align-items-center">
                 <h6 class="fw-semibold mb-30">Candidate Shortlist</h6>
-            <div class="dropdown">
+               
+                
+
+            <div class="dropdown d-flex align-items-center gap-5">
+                <form [formGroup]="searchForm" class="search-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input"
+                               formControlName="searchQuery"
+                               placeholder="Search for job or seeker"
+                               (keyup.enter)="onSearch()">
+                        <button type="button" class="btn btn-primary search-btn" (click)="onSearch()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ status === 0 ? 'Mới nộp' : status === 1 ? 'Đã xem' : status === 2 ? 'Đồng ý' : 'Từ chối' }}
                 </button>
