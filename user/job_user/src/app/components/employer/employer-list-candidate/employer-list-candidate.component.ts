@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import {
   Application,
   ApplicationUpdateStatus,
@@ -29,12 +31,15 @@ export class EmployerListCandidateComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private jobService: JobService,
+    private fb: FormBuilder,
   ) { }
   user: User;
   employee: Employee;
   seeker: Seeker;
   application: Application;
   job: Job;
+  searchControl = new FormControl('');
+  searchForm: FormGroup;
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user'));
     const employer = JSON.parse(localStorage.getItem('employer'));
@@ -46,6 +51,14 @@ export class EmployerListCandidateComponent implements OnInit {
       this.status = 0;
       this.loadData();
     }
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300), 
+      distinctUntilChanged(), 
+      switchMap(query => this.applicationService.search(query)) 
+    );
+    this.searchForm = this.fb.group({
+      searchQuery: [''], // Khởi tạo giá trị mặc định là rỗng
+    });
   }
 
   filterByStatus(status: number): void {
@@ -57,16 +70,15 @@ export class EmployerListCandidateComponent implements OnInit {
     this.applicationService
       .findByEmployerId(this.user.id, this.currentPage, this.status)
       .then((res) => {
-        console.log(res);
         this.applications = res['data']['content'];
-        this.totalApplications = res['data']['totalElements'];
-        this.totalPages = res['data']['totalPages'];
-        this.pageSize = res['data']['size'];
+        this.totalApplications = res['data']['page']['totalElements'];
+        this.totalPages = res['data']['page']['totalPages'];
+        this.pageSize = res['data']['page']['size'];
       });
     this.applicationService
       .findByEmployerId(this.user.id, this.currentPage, 3)
       .then((res) => {
-        this.totalRejected = res['data']['totalElements'];
+        this.totalRejected = res['data']['page']['totalElements'];
       });
   }
   // Hàm để chuyển trang
@@ -76,6 +88,20 @@ export class EmployerListCandidateComponent implements OnInit {
       this.loadData();
     }
   }
+  onSearch(currentPage: number = 0): void {
+    const query = this.searchForm.get('searchQuery').value.trim();
+    console.log(query);
+    if (!query) {
+      return;
+    }
+  
+    this.applicationService.search(query, query, currentPage).then(
+      (res) => {        
+        this.applications = res['data']['content'] || [];
+      },
+    );
+  }
+  
 
   getPages(): number[] {
     const pages = [];

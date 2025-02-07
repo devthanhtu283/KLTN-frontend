@@ -10,3 +10,40 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+
+/* Form tìm kiếm */
+.search-form {
+  max-width: 350px; 
+  width: 100%;
+}
+
+.input-group {
+  width: 105%;
+}
+.search-input {
+  height: 45px;
+  border-radius: 8px 0 0 8px; 
+  border: 1px solid #ced4da;
+  font-size: 16px;
+  padding-left: 12px;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.search-btn {
+  height: 45px;
+  border-radius: 0 8px 8px 0; 
+  padding: 0 15px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}

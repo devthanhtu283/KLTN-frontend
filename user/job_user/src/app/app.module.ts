@@ -51,6 +51,7 @@ import { ApplicationService } from './services/application.service';
 import { TimeAgoPipe } from './time-ago.pipe';
 import { SeekerListJobsComponent } from './components/seeker/seeker-list-jobs/seeker-list-jobs.component';
 import { SeekerFavoriteComponent } from './components/seeker/seeker-favorite/seeker-favorite.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 // import { MapComponent } from './components/test/map.component';
 
@@ -114,7 +115,8 @@ import { SeekerFavoriteComponent } from './components/seeker/seeker-favorite/see
     ReactiveFormsModule,
     HttpClientModule,
     ToastModule,
-    BrowserAnimationsModule  
+    BrowserAnimationsModule,
+    AutoCompleteModule
   ],
   providers: [
     UserService,
