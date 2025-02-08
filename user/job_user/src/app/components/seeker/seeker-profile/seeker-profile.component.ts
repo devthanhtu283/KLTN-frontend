@@ -5,6 +5,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Seeker, User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import * as moment from 'moment';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   templateUrl: './seeker-profile.component.html',
@@ -20,10 +22,22 @@ export class SeekerProfileComponent implements OnInit {
   avatar: string;
   photo: File;
   avatarUrl: string = 'assets/img/dashboard/no-avatar.jpg';
+  selectedFile: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
+  imageUrl: string | null = null;
+
+  provinces: any[] = [];
+  districts: any[] = [];
+  wards: any[] = [];
+
+  selectedProvince: number | null = null;
+  selectedDistrict: number | null = null;
+  selectedWard: number | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private locationService: LocationService,
     private router: Router,
     private messageService: MessageService,
     private route: ActivatedRoute,
@@ -32,6 +46,7 @@ export class SeekerProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadProvinces();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const fragment = this.route.snapshot.fragment;
@@ -57,8 +72,10 @@ export class SeekerProfileComponent implements OnInit {
           [Validators.pattern('^\\+?\\d{10,15}$')],
         ],
         address: [candidate?.address || ''],
+        province: [null, Validators.required], // Định nghĩa field cho tỉnh
+        district: [null, Validators.required], // Định nghĩa field cho quận
+        ward: [null, Validators.required], // Định nghĩa field cho phường
         gender: [candidate?.gender || ''],
-        avatar: [candidate?.avatar || ''],
         dob: [candidate?.dob || ''],
       });
     }
@@ -70,10 +87,173 @@ export class SeekerProfileComponent implements OnInit {
       this.candidateForm.patchValue({ dob: formattedDob });
       
     }
+
+    this.userService.findByIdSeeker(this.user.id).then(
+      (res) => {
+        console.log("API Response:", res); // Kiểm tra dữ liệu nhận được
+    
+        if (res.data) {
+          let seekerData = res.data;
+    
+          // Chuyển đổi `dob` từ `dd/MM/yyyy` → `yyyy-MM-dd`
+          let formattedDob = seekerData.dob 
+        ? moment(seekerData.dob, 'DD/MM/YYYY').utcOffset(0, true).format('YYYY-MM-DD') 
+        : '';
+    
+          // Gán lại dữ liệu vào form
+          this.candidateForm.patchValue({
+            fullName: seekerData.fullName,
+            phone: seekerData.phone,
+            address: seekerData.address,
+            gender: seekerData.gender,
+            dob: formattedDob,  // Đảm bảo `dob` hiển thị đúng trong <input type="date">
+          });
+    
+          // Cập nhật hình ảnh nếu có
+          if (seekerData.avatar) {
+            this.imageUrl = `http://localhost:8081/assets/images/${seekerData.avatar}`;
+          }
+        }
+      },
+      (err) => {
+        console.error("Error fetching seeker data:", err);
+      }
+    );
+    
+    this.seeker = JSON.parse(localStorage.getItem('candidate'));
+    const savedProvince = localStorage.getItem('selectedProvince');
+    const savedDistrict = localStorage.getItem('selectedDistrict');
+    const savedWard = localStorage.getItem('selectedWard');
+
+    if (savedProvince) {
+      this.candidateForm.patchValue({ province: JSON.parse(savedProvince) });
+      this.selectedProvince = JSON.parse(savedProvince);
+    }
+
+    if (savedDistrict) {
+      this.candidateForm.patchValue({ district: JSON.parse(savedDistrict) });
+      this.selectedDistrict = JSON.parse(savedDistrict);
+
+      // Gọi API lấy danh sách quận/huyện nếu có tỉnh
+      this.locationService.getAllDistricts().then((data: any) => {
+        if (Array.isArray(data)) {
+          this.districts = data.filter((district: any) => district.province_code === Number(this.selectedProvince));
+        }
+      });
+
+      // Gọi API lấy danh sách phường/xã nếu có quận/huyện
+      this.locationService.getAllWards().then((data: any) => {
+        if (Array.isArray(data)) {
+          this.wards = data.filter((ward: any) => ward.district_code === Number(this.selectedDistrict));
+          
+          if (savedWard) {
+            this.selectedWard = JSON.parse(savedWard); // ✅ Gán giá trị vào selectedWard
+            this.candidateForm.patchValue({ ward: this.selectedWard });
+          }
+        }
+      });
+    }
   }
+
+  loadProvinces() {
+      this.locationService.getProvinces().then(
+        (res) => {
+          this.provinces = res;
+        }
+      )
+  }
+
+  onProvinceChange(): void {
+    this.districts = [];
+    this.wards = [];
+    this.selectedDistrict = null;
+    this.candidateForm.patchValue({ district: null, ward: null });
+    const selectedProvince = this.candidateForm.get('province')?.value;
+    if (selectedProvince) {
+      this.locationService.getAllDistricts().then((data: any) => {
+        if (Array.isArray(data)) {
+          this.districts = data.filter((district: any) => district.province_code === Number(selectedProvince));
+          localStorage.setItem('selectedProvince', JSON.stringify(selectedProvince));
+          localStorage.setItem('districts', JSON.stringify(this.districts));
+        } else {
+          console.error("Dữ liệu API không phải là một mảng:", data);
+        }
+      });
+    }
+  }
+  
+
+  onDistrictChange(): void {
+    this.wards = [];
+    this.candidateForm.patchValue({ ward: null });
+
+    const selectedDistrict = this.candidateForm.get('district')?.value;
+
+    if (selectedDistrict) {
+      this.locationService.getAllWards().then((data: any) => {
+        if (Array.isArray(data)) {
+          this.wards = data.filter((ward: any) => ward.district_code === Number(selectedDistrict));
+          localStorage.setItem('selectedDistrict', JSON.stringify(selectedDistrict));
+          localStorage.setItem('wards', JSON.stringify(this.wards));
+        } else {
+          this.wards = [];
+        }
+
+      });
+    }
+  }
+
+  onWardChange(): void {
+    const selectedWard = this.candidateForm.get('ward')?.value;
+    console.log("Phường/Xã đã chọn:", selectedWard);
+  
+    if (selectedWard) {
+      console.log("cc", selectedWard);
+      localStorage.setItem('selectedWard', JSON.stringify(selectedWard));
+      this.updateAddress();
+    }
+  }
+  
+
+  updateAddress(): void {
+    const provinceCode = this.candidateForm.get('province')?.value;
+    const districtCode = this.candidateForm.get('district')?.value;
+    const wardCode = this.candidateForm.get('ward')?.value;
+  
+  
+    const province = this.provinces.find(p => p.code == provinceCode)?.name || "";
+    const district = this.districts.find(d => d.code == districtCode)?.name || "";
+    const ward = this.wards.find(w => w.code == wardCode)?.name || "";
+    
+  
+    const fullAddress = `${ward}, ${district}, ${province}`.trim();
+  
+    this.candidateForm.patchValue({ address: fullAddress });
+  
+  }
+  
+  
+
+  onFileChange(evt: any) {
+    const file = evt.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+
+      // Hiển thị preview hình ảnh
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
 
   // Hàm submit để cập nhật thông tin
   onSubmit() {
+    const birthday = this.candidateForm.value.dob;
+    const formattedBirthday = moment(birthday, 'YYYY-MM-DD').format('DD/MM/YYYY');
+    
     this.seeker = {
       id: this.user.id,
       fullName: this.candidateForm.value.fullName,
@@ -81,13 +261,13 @@ export class SeekerProfileComponent implements OnInit {
       address: this.candidateForm.value.address,
       gender: this.candidateForm.value.gender,
       status: 1,
-      dob: this.datePipe.transform(this.candidateForm.value.dob, 'dd/MM/yyyy'),
+      dob: formattedBirthday,
       updatedAt: null,
       avatar: null,
     };
     var formData = new FormData();
-    if (this.photo) {
-      formData.append('file', this.photo);
+    if (this.selectedFile) {
+      formData.append('file', this.selectedFile, this.selectedFile.name);
     }
 
     formData.append('seekerDTO', JSON.stringify(this.seeker));
@@ -98,12 +278,16 @@ export class SeekerProfileComponent implements OnInit {
           summary: 'Cập nhật thành công',
           detail: 'Bạn đã cập nhật thông tin thành công.',
         });
+        console.log(res);
         localStorage.removeItem('candidate');
-        this.avatarUrl = this.getImageUrl(res.data.avatar);
+        // this.avatarUrl = this.getImageUrl(res.data.avatar);
+        if(res.avatarUrl) {
+          this.imageUrl = `http://localhost:8081/assets/images/${res.avatarUrl}`;
+        }
         
         localStorage.setItem('candidate', JSON.stringify(res.data));
         setTimeout(() => {
-            this.router.navigate(['/candidate-profile']);
+            this.router.navigate(['/seeker/profile']);
         }, 500);
       },
       (err) => {
@@ -116,20 +300,6 @@ export class SeekerProfileComponent implements OnInit {
         this.router.navigate(['/candidate-profile']);
       }
     );
-  }
-
-  onFileChange(evt: any) {
-    const file = evt.target.files[0]; // Lấy tệp đã chọn
-    if (file) {
-      this.photo = file; // Lưu tệp để gửi lên server
-
-      // Đọc tệp và cập nhật avatarUrl
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.avatarUrl = e.target.result; // Cập nhật avatarUrl với dữ liệu hình ảnh
-      };
-      reader.readAsDataURL(file); // Đọc tệp dưới dạng URL
-    }
   }
 
   getImageUrl(avatarPath: string): string {

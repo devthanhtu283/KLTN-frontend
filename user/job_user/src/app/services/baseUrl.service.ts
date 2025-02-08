@@ -6,6 +6,7 @@ export class BaseUrl {
     private urlJobService: string = "http://localhost:8080/job/";
     private urlApplicationService: string = "http://localhost:8080/application/";
     private jobImageUrl: string=  "http://localhost:8080/job-static/assets/images/";
+    private locationUrl: string = "https://provinces.open-api.vn/api";
     getUrlUser(): string {
         return this.urlUserService;
     }
@@ -21,6 +22,10 @@ export class BaseUrl {
 
     getJobImageUrl(): string{
         return this.jobImageUrl;
+    }
+
+    getLocationUrl(): string {
+        return this.locationUrl;
     }
 
 } 

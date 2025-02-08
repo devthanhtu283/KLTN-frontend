@@ -52,6 +52,7 @@ import { TimeAgoPipe } from './time-ago.pipe';
 import { SeekerListJobsComponent } from './components/seeker/seeker-list-jobs/seeker-list-jobs.component';
 import { SeekerFavoriteComponent } from './components/seeker/seeker-favorite/seeker-favorite.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { LocationService } from './services/location.service';
 
 // import { MapComponent } from './components/test/map.component';
 
@@ -120,6 +121,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
   ],
   providers: [
     UserService,
+    LocationService,
     MessagesModule,
     BaseUrl,
     MessageService,

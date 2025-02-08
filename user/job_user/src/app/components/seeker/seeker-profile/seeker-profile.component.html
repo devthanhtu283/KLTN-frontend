@@ -182,17 +182,15 @@
                     </div>
                 </nav>
                 <div class="my__details" id="info">
-                    <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
                         <div class="info__top">
-                            <div class="author__image">
+                            <div class="author__image" *ngIf="imageUrl">
                                 <!-- <img src="assets/img/dashboard/proifle.svg" alt=""> -->
-                                <img 
-                                    [src]="getImageUrl(avatarUrl)"
-                                    alt="Avatar">
+                                <img [src]="imageUrl || 'assets/img/dashboard/no-avatar.jpg'" alt="Preview" class="img-preview" />
                             </div>
                             <div class="select__image">
                                 <label for="file" class="file-upload__label">Upload New Photo</label>
-                                <input type="file"  (change)="onFileChange($event)" formControlName="avatar" class="file-upload__input" id="file">
+                                <input type="file"  (change)="onFileChange($event)" class="file-upload__input" id="file">
                             </div>
                             <div class="delete__data">
                                 <i class="fa-light fa-trash-can"></i>
@@ -202,27 +200,50 @@
                             <div class="row row-cols-sm-2 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="name">Full Name</label>
-                                    <input type="text" formControlName="fullName" id="name" placeholder="Full Name">
+                                    <input type="text" formControlName="fullName" id="name" placeholder="Full Name" [ngModel]="seeker.fullName">
                                 </div>
                                 <div class="rt-input-group">
+                                    <label>Tỉnh/Thành phố:</label>
+                                    <select formControlName="province" (change)="onProvinceChange()" class="form-select">
+                                        <option *ngFor="let province of provinces" [value]="province.code">{{ province.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row row-cols-sm-2 row-cols-1 g-3">
+                                <div class="rt-input-group" *ngIf="districts?.length > 0">
+                                    <label>Quận/Huyện:</label>
+                                    <select formControlName="district" (change)="onDistrictChange()" class="form-select">
+                                        <option *ngFor="let district of districts" [value]="district.code">{{ district.name }}</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="rt-input-group" *ngIf="wards?.length > 0">
+                                    <label>Phường/Xã:</label>
+                                    <select formControlName="ward" (change)="onWardChange()" class="form-select">
+                                        <option *ngFor="let ward of wards" [value]="ward.code">{{ ward.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row row-cols-sm-1 row-cols-1 g-3">
+                                <div class="rt-input-group">
                                     <label for="address">Address</label>
-                                    <input type="text" formControlName="address" id="address" placeholder="Address">
+                                    <input type="text" formControlName="address" id="address" placeholder="Address" [ngModel]="seeker.address">
                                 </div>
                             </div>
                             <div class="row row-cols-sm-2 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" formControlName="phone" id="phone" placeholder="+880171234567">
+                                    <input type="text" formControlName="phone" id="phone" placeholder="+880171234567" [ngModel]="seeker.phone">
                                 </div>
                                 <div class="rt-input-group">
                                     <label for="dob">Date of Birth</label>
-                                    <input type="date" formControlName="dob" id="dob">
+                                    <input type="date" formControlName="dob" id="dob" [ngModel]="seeker.dob">
                                 </div>
                             </div>
                             <div class="row row-cols-sm-2 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="gender">Gender</label>
-                                    <select name="gender" formControlName="gender" id="gender" class="form-select">
+                                    <select name="gender" formControlName="gender" id="gender" class="form-select" [ngModel]="seeker.gender">
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
@@ -357,36 +378,24 @@
             <div class="social__links radius-16 p-30 bg-white" id="address">
                 <div class="row row-cols-md-2 row-cols-lg-2 row-cols-1 g-30">
                     <div class="info__field">
-                        <div class="rt-input-group">
-                            <label for="Country">Country</label>
-                            <select name="Country" id="Country" class="form-select">
-                                <option value="1">Select Country</option>
-                                <option value="2">Bangladesh</option>
-                                <option value="3">India</option>
-                                <option value="4">Pakistan</option>
-                                <option value="5">Nepal</option>
-                                <option value="6">Srilanka</option>
-                                <option value="7">China</option>
-                                <option value="8">USA</option>
+                        <!-- <div class="rt-input-group">
+                            <label>Tỉnh/Thành phố:</label>
+                            <select [(ngModel)]="selectedProvince" (change)="onProvinceChange()" class="form-select">
+                              <option *ngFor="let province of provinces" [value]="province.code">{{ province.name }}</option>
                             </select>
                         </div>
-                        <div class="rt-input-group">
-                            <label for="State">State</label>
-                            <select name="State" id="State" class="form-select">
-                                <option value="1">Select State</option>
-                                <option value="2">Dhaka</option>
-                                <option value="3">Chittagong</option>
-                                <option value="4">Sylhet</option>
-                                <option value="5">Rajshahi</option>
-                                <option value="6">Khulna</option>
-                                <option value="7">Barishal</option>
-                                <option value="8">Mymensingh</option>
+                        <div class="rt-input-group" *ngIf="districts?.length > 0">
+                            <label>Quận/Huyện:</label>
+                            <select [(ngModel)]="selectedDistrict" (change)="onDistrictChange()" class="form-select">
+                              <option *ngFor="let district of districts" [value]="district.code">{{ district.name }}</option>
                             </select>
                         </div>
-                        <div class="rt-input-group">
-                            <label for="pr">Present Address</label>
-                            <input type="text" id="pr" placeholder="2715 Ash Dr. San Jose,USA" required>
-                        </div>
+                        <div class="rt-input-group" *ngIf="wards?.length > 0">
+                            <label>Phường/Xã:</label>
+                            <select class="form-select">
+                              <option *ngFor="let ward of wards" [value]="ward.code">{{ ward.name }}</option>
+                            </select>
+                        </div> -->
                         <div class="rt-input-group">
                             <label for="ps">Postal Code</label>
                             <input type="text" id="ps" placeholder="8340" required>
