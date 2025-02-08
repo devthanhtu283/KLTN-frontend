@@ -212,7 +212,7 @@
                             <div class="single__applied__job">
                                 <div class="single__applied__job__content">   
                                     <div class="icon">
-                                        <img src="assets/img/icon/apple.svg" alt="">
+                                        <img src="{{imgBaseUrl + job.employerLogo}}" alt="">
                                     </div>
                                     <div class="content">
                                         <a [routerLink]="['/seeker/job-details', job.id]" > <h6>{{ job.title.length > 40 ? (job.title | slice: 0: 40) + '...' : job.title }}</h6></a>

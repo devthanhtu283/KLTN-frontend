@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Job } from "src/app/models/job.model";
 import { User } from 'src/app/models/user.model';
+import { BaseUrl } from "src/app/services/baseUrl.service";
 import { JobService } from "src/app/services/job.service";
 import { UserService } from "src/app/services/user.service";
 
@@ -15,14 +16,17 @@ export class SeekerFavoriteComponent implements OnInit {
   totalPages: number = 1;
   listJobIds: number[] = [];
   jobs: Job[] = [];
+  imgBaseUrl: string;
   constructor(
     private userService: UserService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private jobService: JobService
+    private jobService: JobService,
+    private baseUrl: BaseUrl
   ) {}
   user: User;
   ngOnInit(): void {
+    this.imgBaseUrl = this.baseUrl.getJobImageUrl();
     const seekerInfo = localStorage.getItem('candidate');
     const seeker = JSON.parse(seekerInfo);
     this.seekerId = seeker.data.id;

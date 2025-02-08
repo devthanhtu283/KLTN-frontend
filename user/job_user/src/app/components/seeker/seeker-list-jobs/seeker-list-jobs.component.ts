@@ -34,8 +34,11 @@ export class SeekerListJobsComponent implements OnInit {
   ngOnInit(): void {
     this.imgBaseUrl = this.baseUrl.getJobImageUrl();
     const seekerInfo = localStorage.getItem('candidate');
-    const seeker = JSON.parse(seekerInfo);
-    this.seekerId = seeker.data.id;
+    if(seekerInfo != null){
+      const seeker = JSON.parse(seekerInfo);
+      this.seekerId = seeker.data.id;
+    }
+  
     this.searchForm = this.fb.group({
       title: [''],
       locationId: [''],
@@ -79,13 +82,18 @@ export class SeekerListJobsComponent implements OnInit {
        
         res.content.map((j) => {
           console.log(j.id);
-          this.jobService.favoriteCheckExists(j.id, this.seekerId).then(
-            res => {
-              j.checkFavorite = res.status;
-              console.log(res);
-
-            }
-          );
+          if(this.seekerId == null){
+              j.chekFavorite == false;
+          } else {
+            this.jobService.favoriteCheckExists(j.id, this.seekerId).then(
+              res => {
+                j.checkFavorite = res.status;
+                console.log(res);
+  
+              }
+            );
+          }
+         
         });
       });
     }
@@ -158,8 +166,7 @@ export class SeekerListJobsComponent implements OnInit {
   addFavorite(jobId: number) {
     
     const seekerInfo = localStorage.getItem('candidate');
-    const seeker = JSON.parse(seekerInfo);
-    this.seekerId = seeker.data.id;
+    console.log(seekerInfo);
     if (seekerInfo) {
       var favorite = {
         seekerId: this.seekerId,
