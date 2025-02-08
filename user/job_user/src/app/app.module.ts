@@ -54,6 +54,9 @@ import { SeekerFavoriteComponent } from './components/seeker/seeker-favorite/see
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+
+import { LocationService } from './services/location.service';
+
 // import { MapComponent } from './components/test/map.component';
 import { EditorModule } from 'primeng/editor';
 
@@ -133,6 +136,7 @@ import { CalendarModule } from 'primeng/calendar';
   ],
   providers: [
     UserService,
+    LocationService,
     MessagesModule,
     BaseUrl,
     MessageService,
