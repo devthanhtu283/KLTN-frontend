@@ -70,23 +70,23 @@
                         <div class="search__item">
                             <label for="name" class="mb-4 font-20 fw-medium text-dark text-capitalize">Name</label>
                             <div class="position-relative">
-                                <input type="text" id="name" placeholder="Your Name" required>
+                                <input type="text" id="name" placeholder="Your Name" required name="name"  [(ngModel)]="name" >
                                 <i class="fa-light fa-user"></i>
                             </div>
                         </div>
                         <div class="search__item">
                             <label for="cemail" class="mb-4 font-20 fw-medium text-dark text-capitalize">Your Email</label>
                             <div class="position-relative">
-                                <input type="email" id="cemail" placeholder="Enter your email" required>
+                                <input type="email" id="cemail" placeholder="Enter your email" name="email" required  [(ngModel)]="email">
                                 <i class="rt-mailbox"></i>
                             </div>
                         </div>
                         <div class="search__item">
                             <label class="mb-4 font-20 fw-medium text-dark text-capitalize" for="message">Your Comment</label>
-                            <textarea name="message" id="message" placeholder="Message"></textarea>
+                            <textarea name="message" id="message" placeholder="Message"  [(ngModel)]="msg"></textarea>
                             <i class="fa-thin fa-comment-lines"></i>
                         </div>
-                        <button type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">
+                        <button (click)="send()" type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">
                             Send Message
                         </button>
                     </form>
@@ -135,6 +135,4 @@
     
 <!-- app center end -->
 
-
-
-
+<p-toast></p-toast>

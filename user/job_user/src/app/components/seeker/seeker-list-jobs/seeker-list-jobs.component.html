@@ -170,9 +170,12 @@
                                                 <div class="company__icon rounded-2">
                                                     <img src="{{imgBaseUrl + job.employerLogo}}" alt="">
                                                 </div>
+                                                <div class="d-flex justify-content-between align-items-center gap-3">
+                                                    <a [routerLink]="['/seeker/job-details', job.id]" class="job__title h6 mb-0">{{ job.title.length > 35 ? (job.title | slice: 0: 35) + '...' : job.title }}</a>
+                                                </div>
                                                 <div class="job__meta w-100 d-flex flex-column gap-2">
-                                                    <div class="d-flex justify-content-between align-items-center gap-3">
-                                                        <a [routerLink]="['/seeker/job-details', job.id]" class="job__title h6 mb-0">{{ job.title.length > 35 ? (job.title | slice: 0: 35) + '...' : job.title }}</a>
+                                                    <div class="d-flex gap-2 align-items-center" style="color: black;">
+                                                         {{job.required}}
                                                     </div>
                                                     <div class="d-flex gap-3 gap-md-4 flex-wrap mb-2">
                                                         <div class="d-flex gap-2 align-items-center">
@@ -191,6 +194,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <br>  <br>
                                             <div>
                                                 <button *ngIf="job.checkFavorite != true" type="button" class="bookmark__btn" (click)="addFavorite(job.id)"> <i class="fa fa-heart"></i></button>
                                                 <button *ngIf="job.checkFavorite" type="button" class="bookmark__btn" (click)="addFavorite(job.id)"> <i class="fa fa-heart text-danger"></i></button>

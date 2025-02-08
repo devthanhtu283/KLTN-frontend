@@ -85,5 +85,25 @@ export class JobService {
     return lastValueFrom(this.http.get(
       this.baseUrl.getUrlJob() + 'favorite/checkExists/' + jobId + '/' + seekerId
     ));
-}
+  }
+  async feedbackCreate(feedback: any): Promise<any> {
+    return await lastValueFrom(
+      this.http.post(this.baseUrl.getUrlJob() + 'feedback/create', feedback)
+    );  
+  }
+  async findByEmployerIdPagination(employerId: number, page: number): Promise<any> {
+    return await lastValueFrom(
+      this.http.get(this.baseUrl.getUrlJob() + 'findByEmployerIdPagination/' + employerId + '?page=' + page)
+    );
+  }
+  async create(job: any): Promise<any> {
+    return await lastValueFrom(
+      this.http.post(this.baseUrl.getUrlJob() + 'create', job)
+    );  
+  }
+  async delete(jobId: number): Promise<any> {
+    return await lastValueFrom(
+      this.http.put(this.baseUrl.getUrlJob() + 'delete/' + jobId, null)
+    );  
+  }
 }

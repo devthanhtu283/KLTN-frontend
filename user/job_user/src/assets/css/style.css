@@ -4009,6 +4009,7 @@ input::placeholder {
   padding: 22px 20px;
   position: relative;
   z-index: 99;
+  margin-bottom: 40px;
 }
 .rts__job__search .single__input {
   min-width: 190px;
@@ -9255,6 +9256,7 @@ input::placeholder {
 .single__applied__job__content {
   display: flex;
   align-items: center;
+
   gap: 30px;
 }
 @media screen and (max-width: 768px) {
@@ -9265,7 +9267,7 @@ input::placeholder {
 .single__applied__job .icon {
   height: 122px;
   min-width: 122px;
-  background-color: var(--rts-gray);
+  background-color: white;
   border-radius: 50%;
   display: grid;
   place-content: center;
@@ -9276,7 +9278,7 @@ input::placeholder {
   }
 }
 .single__applied__job .icon img {
-  height: 75px;
+
   width: 75px;
 }
 .single__applied__job .content__flex {
@@ -10105,8 +10107,19 @@ input::placeholder {
   color: var(--rts-button-1);
   transition: var(--transition);
 }
-.action__operation.pending:hover {
-  background: var(--rts-button-1);
+.action__operation.stop {
+  background: linear-gradient(
+      228.34deg,
+      #fef2eb 0%,
+      #f1f1f1 46.31%,
+      #e4e0ea 100%
+    ),
+    #ffffff;
+  color: red;
+  transition: var(--transition);
+}
+.action__operation.stop:hover {
+  background: red;
   color: var(--rts-white);
 }
 .short__list__candidate {

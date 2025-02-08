@@ -45,17 +45,22 @@ import { EmployerAlertsComponent } from './components/employer/employer-alerts/e
 import { EmployerMeetingComponent } from './components/employer/employer-meeting/employer-meeting.component';
 import { EmployerPricingComponent } from './components/employer/employer-pricing/employer-pricing.component';
 import { JobService } from './services/job.service';
-
+import { DialogModule } from 'primeng/dialog';
 import { MapComponent } from './components/seeker/test/map.component';
 import { ApplicationService } from './services/application.service';
 import { TimeAgoPipe } from './time-ago.pipe';
 import { SeekerListJobsComponent } from './components/seeker/seeker-list-jobs/seeker-list-jobs.component';
 import { SeekerFavoriteComponent } from './components/seeker/seeker-favorite/seeker-favorite.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 // import { MapComponent } from './components/test/map.component';
+import { EditorModule } from 'primeng/editor';
 
-
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,7 +121,15 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     HttpClientModule,
     ToastModule,
     BrowserAnimationsModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    InputTextareaModule,
+    DropdownModule,
+    InputNumberModule,
+    CalendarModule,
+    EditorModule
   ],
   providers: [
     UserService,
