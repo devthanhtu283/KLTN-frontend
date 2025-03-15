@@ -39,7 +39,10 @@ export class EmployerListCandidateComponent implements OnInit {
   application: Application;
   job: Job;
   searchControl = new FormControl('');
-  searchForm: FormGroup;
+  searchForm = new FormGroup({
+    searchQuery: new FormControl(''),
+    searchType: new FormControl('job')  // Mặc định tìm theo Job
+});
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user'));
     const employer = JSON.parse(localStorage.getItem('employer'));
@@ -56,9 +59,9 @@ export class EmployerListCandidateComponent implements OnInit {
       distinctUntilChanged(), 
       switchMap(query => this.applicationService.search(query)) 
     );
-    this.searchForm = this.fb.group({
-      searchQuery: [''], // Khởi tạo giá trị mặc định là rỗng
-    });
+    // this.searchForm = this.fb.group({
+    //   searchQuery: [''], // Khởi tạo giá trị mặc định là rỗng
+    // });
   }
 
   filterByStatus(status: number): void {
@@ -71,14 +74,14 @@ export class EmployerListCandidateComponent implements OnInit {
       .findByEmployerId(this.user.id, this.currentPage, this.status)
       .then((res) => {
         this.applications = res['data']['content'];
-        this.totalApplications = res['data']['page']['totalElements'];
-        this.totalPages = res['data']['page']['totalPages'];
-        this.pageSize = res['data']['page']['size'];
+        this.totalApplications = res['data']['totalElements'];
+        this.totalPages = res['data']['totalPages'];
+        this.pageSize = res['data']['size'];
       });
     this.applicationService
       .findByEmployerId(this.user.id, this.currentPage, 3)
       .then((res) => {
-        this.totalRejected = res['data']['page']['totalElements'];
+        this.totalRejected = res['data']['totalElements'];
       });
   }
   // Hàm để chuyển trang
@@ -89,19 +92,26 @@ export class EmployerListCandidateComponent implements OnInit {
     }
   }
   onSearch(currentPage: number = 0): void {
-    const query = this.searchForm.get('searchQuery').value.trim();
-    console.log(query);
-    if (!query) {
-      return;
+    const query = this.searchForm.value.searchQuery.trim();
+    const type = this.searchForm.value.searchType;
+
+    if (!query) return;  // Nếu không nhập gì thì không tìm kiếm
+
+    let jobTitle = '';
+    let seekerName = '';
+
+    if (type === 'job') {
+        jobTitle = query;
+    } else {
+        seekerName = query;
     }
-  
-    this.applicationService.search(query, query, currentPage).then(
+
+    this.applicationService.search(jobTitle, seekerName, currentPage).then(
       (res) => {        
-        this.applications = res['data']['content'] || [];
+        this.applications = res?.data?.content || [];
       },
     );
-  }
-  
+}
 
   getPages(): number[] {
     const pages = [];
