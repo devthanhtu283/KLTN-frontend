@@ -17,6 +17,10 @@ export class ApplicationService {
           return await lastValueFrom(this.httpClient.get(`${this.baseUrl.getUrlApplication()}list-seeker?employerId=${employerId}&page=${currentPage}&status=${status}`));
     }
 
+    async listSeekerApplied(seekerId: number, currentPage: number, status: number): Promise<any> {
+      return await lastValueFrom(this.httpClient.get(`${this.baseUrl.getUrlApplication()}list-seeker-applied?seekerId=${seekerId}&page=${currentPage}&status=${status}`));
+    }
+
     async save(application: any): Promise<any> {
         return await lastValueFrom(this.httpClient.post(this.baseUrl.getUrlApplication()
         + 'save', application));

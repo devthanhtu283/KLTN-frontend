@@ -7,10 +7,14 @@ export class Application {
     appliedAt: string;
     seekerName: string;
     jobTitle: string;
+    workType: String;
     employerName: string;
     address: string;
     phone: string;
     avatar: string;
+    experience: string;
+    salary: string;
+    companyName: string;
 }
 
 export class ApplicationUpdateStatus {
