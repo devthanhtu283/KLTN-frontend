@@ -12,7 +12,6 @@ export class UserService{
     ){}
 
     async login(user: any) : Promise<any>{
-
         return await lastValueFrom(this.httpClient.post(this.baseUrlService.getUserBaseUrl()
         + 'login', user));
     }
@@ -21,6 +20,4 @@ export class UserService{
         return await lastValueFrom(this.httpClient.get(this.baseUrlService.getUserBaseUrl()
         + 'findByEmail/' + email));
     }
-    
-
 }
