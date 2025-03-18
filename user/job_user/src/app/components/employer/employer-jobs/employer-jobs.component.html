@@ -293,11 +293,11 @@
 
                 <!-- pagination -->
                 <div class="pagination mt-4">
-                    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Trang trước</button>
+                    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"><i class="fa-thin fa-arrow-left"></i></button>
                     <span *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === currentPage">
                       {{ page }}
                     </span>
-                    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Trang sau</button>
+                    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"><i class="fa-thin fa-arrow-right"></i></button>
                   </div>
                 <!-- pagination end -->
             </div>
@@ -309,80 +309,87 @@
     </div>
 </div>
 <p-toast></p-toast>
-<p-dialog header="Thêm công việc" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
-    <span class="p-text-secondary block mb-5">Vui lòng điền thông tin công việc.</span>
+<p-dialog header="Thêm công việc" [modal]="true" [(visible)]="visible" [style]="{ width: '70rem' }">
+    <h3>Xin lỗi chỉ sửa được tới như thế này thôi .. bấn lắm</h3>
+  <table class="w-full table-auto">
+    <tbody>
+      <!-- Title & Salary -->
+      <tr>
+        <td>
+          <label for="title" class="font-semibold block">Tiêu đề</label>
+          <br>
+          <input style="width: 300px;" pInputText id="title" class="w-full" [(ngModel)]="formData.title" placeholder="Nhập tiêu đề" />
+        </td>
+        <td class="p-6">
+          <label for="salary" class="font-semibold block">Lương</label> <br>
+          <input style="width: 300px;"  pInputText id="salary" class="w-full" [(ngModel)]="formData.salary" placeholder="Nhập lương" />
+        </td>
+      </tr>
+
+      <!-- Address & Location -->
+      <tr>
+        <td class="p-6">
+          <label for="address" class="font-semibold block">Địa chỉ</label> <br>
+          <input style="width: 300px;"  pInputText id="address" class="w-full" [(ngModel)]="formData.address" placeholder="Nhập địa chỉ" />
+        </td>
+        <td class="p-6">
+          <label for="location_id" class="font-semibold block">Địa điểm</label> <br>
+          <p-dropdown style="width: 300px;"  id="location_id" [options]="locations" [(ngModel)]="formData.location_id" optionLabel="name" placeholder="Chọn địa điểm" class="w-full"></p-dropdown>
+        </td>
+      </tr>
+
+      <!-- Work Type & Experience -->
+      <tr>
+        <td class="p-6">
+          <label for="work_type_id" class="font-semibold block">Loại công việc</label> <br>
+          <p-dropdown style="width: 300px;"  id="work_type_id" [options]="worktypes" [(ngModel)]="formData.work_type_id" optionLabel="name" placeholder="Chọn loại công việc" class="w-full"></p-dropdown>
+        </td>
+        <td class="p-6">
+          <label for="experience_id" class="font-semibold block">Kinh nghiệm</label> <br>
+          <p-dropdown style="width: 300px;"  id="experience_id" [options]="experiences" [(ngModel)]="formData.experience_id" optionLabel="name" placeholder="Chọn kinh nghiệm" class="w-full"></p-dropdown>
+        </td>
+      </tr>
+
+      <!-- Posted Expired & Members -->
+      <tr>
+        <td class="p-6">
+          <label for="posted_expired" class="font-semibold block">Hạn đăng tuyển</label><br> 
+          <p-calendar style="width: 300px;"  id="posted_expired" [(ngModel)]="formData.posted_expired" dateFormat="dd/mm/yy" placeholder="Chọn ngày" class="w-full"></p-calendar>
+        </td>
+        <td class="p-6"> 
+          <label for="member" class="font-semibold block">Số lượng</label><br>
+          <p-inputNumber style="width: 600px !important;"  id="member" [(ngModel)]="formData.member" [min]="1" [max]="10" class="w-full"></p-inputNumber>
+        </td>
+      </tr>
+
+      <!-- Description (CKEditor) -->
+      <tr>
+        <td class="p-6" colspan="2">
+          <label for="description" class="font-semibold block">Mô tả</label>
+          <p-editor id="description" [(ngModel)]="formData.description" [style]="{ height: '200px' }"></p-editor>
+        </td>
+      </tr>
+
+      <!-- Required (Textarea) -->
+      <tr>
+        <td class="p-6">
+          <label for="required" class="font-semibold block">Yêu cầu</label> <br>
+          <textarea style="width: 300px;"  pInputTextarea id="required" class="w-full" [(ngModel)]="formData.required" rows="4" placeholder="Nhập yêu cầu"></textarea>
+        </td>
+        <td class="p-6">
+            <label for="required_skills" class="font-semibold block">Kỹ năng yêu cầu</label> <br>
+            <input style="width: 300px;"  pInputText id="required_skills" class="w-full" [(ngModel)]="formData.required_skills" placeholder="Nhập kỹ năng" />
+          </td>
+      </tr>
+
+   
+    </tbody>
+  </table>
+
+  <!-- Buttons -->
+  <div class="button-container">
+    <p-button label="Hủy" severity="secondary" (onClick)="visible = false" />
+    <p-button label="Lưu" (onClick)="onSave()" />
+  </div>
   
-    <!-- Title & Salary -->
-    <div class="flex gap-3 mb-3">
-      <div class="flex-auto">
-        <label for="title" class="font-semibold block">Tiêu đề</label>
-        <input pInputText id="title" class="w-full" [(ngModel)]="formData.title" placeholder="Nhập tiêu đề" />
-      </div>
-      <div class="flex-auto">
-        <label for="salary" class="font-semibold block">Lương</label>
-        <input pInputText id="salary" class="w-full" [(ngModel)]="formData.salary" placeholder="Nhập lương" />
-      </div>
-      
-    </div>
-  
-    <!-- Address & Location -->
-    <div class="flex gap-3 mb-3">
-      <div class="flex-auto">
-        <label for="address" class="font-semibold block">Địa chỉ</label>
-        <input pInputText id="address" class="w-full" [(ngModel)]="formData.address" placeholder="Nhập địa chỉ" />
-      </div>
-      <div class="flex-auto">
-        <label for="location_id" class="font-semibold block">Địa điểm</label>
-        <p-dropdown id="location_id" [options]="locations" [(ngModel)]="formData.location_id" optionLabel="name" placeholder="Chọn địa điểm" class="w-full"></p-dropdown>
-      </div>
-    </div>
-  
-    <!-- Work Type & Experience -->
-    <div class="flex gap-3 mb-3">
-      <div class="flex-auto">
-        <label for="work_type_id" class="font-semibold block">Loại công việc</label>
-        <p-dropdown id="work_type_id" [options]="worktypes" [(ngModel)]="formData.work_type_id" optionLabel="name" placeholder="Chọn loại công việc" class="w-full"></p-dropdown>
-      </div>
-      <div class="flex-auto">
-        <label for="experience_id" class="font-semibold block">Kinh nghiệm</label>
-        <p-dropdown id="experience_id" [options]="experiences" [(ngModel)]="formData.experience_id" optionLabel="name" placeholder="Chọn kinh nghiệm" class="w-full"></p-dropdown>
-      </div>
-    </div>
-  
-    <!-- Posted Expired & Members -->
-    <div class="flex gap-3 mb-3">
-      <div class="flex-auto">
-        <label for="posted_expired" class="font-semibold block">Hạn đăng tuyển</label>
-        <p-calendar id="posted_expired" [(ngModel)]="formData.posted_expired" dateFormat="dd/mm/yy" placeholder="Chọn ngày" class="w-full"></p-calendar>
-      </div>
-      <div class="flex-auto">
-        <label for="member" class="font-semibold block">Số lượng</label>
-        <p-inputNumber id="member" [(ngModel)]="formData.member" [min]="1" [max]="10" class="w-full"></p-inputNumber>
-      </div>
-    </div>
-  
-    <!-- Description (CKEditor) -->
-    <div class="mb-3">
-      <label for="description" class="font-semibold block">Mô tả</label>
-      <p-editor id="description" [(ngModel)]="formData.description" [style]="{ height: '200px' }"></p-editor>
-    </div>
-  
-    <!-- Required (Textarea) -->
-    <div class="mb-3">
-      <label for="required" class="font-semibold block">Yêu cầu</label>
-      <textarea pInputTextarea id="required" class="w-full" [(ngModel)]="formData.required" rows="4" placeholder="Nhập yêu cầu"></textarea>
-    </div>
-  
-    <!-- Required Skills -->
-    <div class="mb-3">
-      <label for="required_skills" class="font-semibold block">Kỹ năng yêu cầu</label>
-      <input pInputText id="required_skills" class="w-full" [(ngModel)]="formData.required_skills" placeholder="Nhập kỹ năng" />
-    </div>
-  
-    <!-- Buttons -->
-    <div class="flex justify-content-end gap-2">
-      <p-button label="Hủy" severity="secondary" (onClick)="visible = false" />
-      <p-button label="Lưu" (onClick)="onSave()" />
-    </div>
-  </p-dialog>
-  
+</p-dialog>

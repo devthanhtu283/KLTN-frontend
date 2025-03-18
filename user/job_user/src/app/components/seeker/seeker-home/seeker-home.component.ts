@@ -107,6 +107,8 @@ export class SeekerHomeComponent implements OnInit{
         this.totalPages = res.totalPages; 
         this.currentPage = page; 
         console.log('Found Jobs:', this.jobs);
+        window.scrollBy(0, 600); // Cuộn trang xuống 300px theo chiều dọc
+
       },
       (error) => console.error('Search Error:', error)
     );

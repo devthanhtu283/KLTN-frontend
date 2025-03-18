@@ -10,7 +10,7 @@ import { UserService } from "src/app/services/user.service";
 
 @Component({
     templateUrl: "./employer-jobs.component.html",
-
+    styleUrls: ['./employer-jobs.component.css'],
   })
 export class EmployerJobsComponent implements OnInit {
   employerId: number;
@@ -59,6 +59,7 @@ export class EmployerJobsComponent implements OnInit {
     );
     this.imgBaseUrl = this.baseUrl.getJobImageUrl();
     var employerData = localStorage.getItem('employer');
+    console.log(employerData);
     var employer = JSON.parse(employerData);
     if(employer != null){
       this.employerId = employer.data.id;

@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  td {
+    padding: 12px;
+    vertical-align: top;
+    width: 50%;
+  }
+  
+  td label {
+    font-weight: bold;
+  }
+  
+  p-dropdown, p-inputText, p-inputNumber, p-calendar, p-editor {
+    width: 100%;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center; /* Căn giữa các button theo chiều ngang */
+    gap: 20px; /* Khoảng cách đều giữa các button */
+    margin-top: 20px; /* Nếu cần khoảng cách phía trên */
+  }
+  
