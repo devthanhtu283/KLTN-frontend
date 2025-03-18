@@ -126,63 +126,72 @@
     </div>
 </div>
                 </div>
-                <div class="row g-30 wow animated fadeInUp" data-wow-delay=".0s">
-                    <!-- single job -->
-                     <ng-container *ngFor="let job of jobs">
-                        <div class="col-lg-6 col-xl-4 col-md-6">
-                            <div class="rts__job__card">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="company__icon">
-                                        <img src="{{imgBaseUrl + job.employerLogo}}" alt="">
+                <div *ngIf="jobs.length > 0; else noData" >
+                    <div class="row g-30 wow animated fadeInUp" data-wow-delay=".0s">
+                        <!-- single job -->
+                         <ng-container *ngFor="let job of jobs">
+                            <div class="col-lg-6 col-xl-4 col-md-6">
+                                <div class="rts__job__card">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="company__icon">
+                                            <img src="{{imgBaseUrl + job.employerLogo}}" alt="">
+                                        </div>
+                                        <div class="featured__option">
+                                            <span>{{job.employerName}}</span>
+                                        </div>
                                     </div>
-                                    <div class="featured__option">
-                                        <span>{{job.employerName}}</span>
+                                    <div class="d-flex gap-3 mt-4 flex-wrap">
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <i class="fa-light fa-location-dot"></i> {{job.locationName}}
+                                        </div>
+                                        <div class="d-flex gap-1 align-items-center">
+                                            <i class="fa-light fa-briefcase"></i> {{job.worktypeName}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex gap-3 mt-4 flex-wrap">
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <i class="fa-light fa-location-dot"></i> {{job.locationName}}
+                                    <div style="height: 60px;" class="h6 job__title my-3">
+                                        <a [routerLink]="['/seeker/job-details', job.id]" aria-label="job">
+                                            {{ job.title.length > 50 ? (job.title | slice: 0: 50) + '...' : job.title }}
+                                        </a>
                                     </div>
-                                    <div class="d-flex gap-1 align-items-center">
-                                        <i class="fa-light fa-briefcase"></i> {{job.worktypeName}}
-                                    </div>
-                                </div>
-                                <div style="height: 60px;" class="h6 job__title my-3">
-                                    <a [routerLink]="['/seeker/job-details', job.id]" aria-label="job">
-                                        {{ job.title.length > 50 ? (job.title | slice: 0: 50) + '...' : job.title }}
-                                    </a>
-                                </div>
-                                
-                                <p>
-                                    {{ job.required.length > 90 ? (job.required | slice:0:90) + '...' : job.required }}
-                                </p>
-                                
-                                <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                                    <a href="#">{{job.requiredSkills}}</a>
                                     
-                                </div>
-                                <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                                    <a href="#">{{job.salary}}</a>
+                                    <p>
+                                        {{ job.required.length > 90 ? (job.required | slice:0:90) + '...' : job.required }}
+                                    </p>
                                     
+                                    <div class="job__tags d-flex flex-wrap gap-3 mt-4">
+                                        <a href="#">{{job.requiredSkills}}</a>
+                                        
+                                    </div>
+                                    <div class="job__tags d-flex flex-wrap gap-3 mt-4">
+                                        <a href="#">{{job.salary}}</a>
+                                        
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                     </ng-container>
-                   
-                    <!-- single job end -->
-                    <!-- single job -->
-                   
+                         </ng-container>
+                       
+                        <!-- single job end -->
+                        <!-- single job -->
+                       
+                    </div>
+                    <div class="pagination mt-4">
+                        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"><i class="fa-thin fa-arrow-left"></i></button>
+                        <span *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === currentPage">
+                          {{ page }}
+                        </span>
+                        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"><i class="fa-thin fa-arrow-right"></i></button>
+                      </div>
                 </div>
-                <div class="pagination mt-4">
-                    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Trang trước</button>
-                    <span *ngFor="let page of getPages()" (click)="changePage(page)" [class.active]="page === currentPage">
-                      {{ page }}
-                    </span>
-                    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Trang sau</button>
-                  </div>
-                
+                  <ng-template #noData>
+                    <div class="no-data">
+                        <img src="assets/img/no-data.jpg" alt="Không có dữ liệu" class="no-data__img">
+                        <h2>Không có việc làm nào</h2>
+                    </div>
+                </ng-template>
             </div>
+           
         </section>
+       
         <!-- banner area end -->
         <!-- work process area -->
          <section class="rts__section section__padding">

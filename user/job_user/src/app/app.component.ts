@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   
     shouldShowFooter(url: string): boolean {
       // Danh sách các route mà bạn muốn hiển thị footer
-      const routesWithFooter = ['/seeker/home', '/seeker/contact', '/seeker/job-details', '/seeker/list-jobs', '/seeker/suitable-jobs', '/seeker/about', '/seeker/faq', '/seeker/terms-and-conditions', '/seeker/policy'];
+      const routesWithFooter = ['/seeker/home', '/seeker/contact', '/seeker/job-details', '/seeker/list-jobs', '/seeker/suitable-jobs', '/seeker/about', '/seeker/faq', '/seeker/terms-and-conditions', '/seeker/policy', '/seeker'];
   
       // Kiểm tra xem đường dẫn hiện tại có trong danh sách không
       return routesWithFooter.includes(url);
