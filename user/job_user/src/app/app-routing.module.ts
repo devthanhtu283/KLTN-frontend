@@ -28,7 +28,7 @@ import { TermAndConditionsComponent } from './components/term&conditions/term&co
 import { PolicyComponent } from './components/policy/policy.component';
 import { EmployerProfileComponent } from './components/employer/employer-profile/employer-profile.component';
 import { EmployerJobsComponent } from './components/employer/employer-jobs/employer-jobs.component';
-import { EmployerPostJobComponent } from './components/employer/employer-post-job/employer-post-job.component';
+import { EmployerListApplicationComponent } from './components/employer/employer-list-application/employer-list-application.component';
 import { EmployerListCandidateComponent } from './components/employer/employer-list-candidate/employer-list-candidate.component';
 import { EmployerShortListCandidateComponent } from './components/employer/employer-shortlist-candidate/employer-shortlist-candidate.component';
 import { EmployerMessageComponent } from './components/employer/employer-message/employer-message.component';
@@ -183,8 +183,8 @@ const routes: Routes = [
         component: EmployerJobsComponent,
       },
       {
-        path: "post-job",
-        component: EmployerPostJobComponent,
+        path: "list-application",
+        component: EmployerListApplicationComponent,
       },
       {
         path: "list-seeker",

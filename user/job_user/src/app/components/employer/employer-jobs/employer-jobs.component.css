@@ -26,4 +26,149 @@ table {
     gap: 20px; /* Khoảng cách đều giữa các button */
     margin-top: 20px; /* Nếu cần khoảng cách phía trên */
   }
-  
+/* Container for the table */
+.table-container {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Table Styling */
+.applicant-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Column Widths for Balance */
+.applicant-table th, .applicant-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  color: #333;
+}
+
+.applicant-table th.avatar-col, .applicant-table td.avatar-col {
+  width: 10%; /* Avatar column */
+}
+
+.applicant-table th.name-col, .applicant-table td.name-col {
+  width: 25%; /* Applicant Name column */
+}
+
+.applicant-table th.applied-col, .applicant-table td.applied-col {
+  width: 25%; /* Applied At column */
+}
+
+.applicant-table th.status-col, .applicant-table td.status-col {
+  width: 15%; /* Status column */
+}
+
+.applicant-table th.actions-col, .applicant-table td.actions-col {
+  width: 25%; /* Actions column */
+}
+
+/* Header Styling */
+.applicant-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #555;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Alternating Row Colors */
+.applicant-table tbody tr.alternate-row {
+  background-color: #f9f9f9;
+}
+
+/* Row Hover Effect */
+.applicant-table tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+/* Avatar Styling */
+.applicant-table td img.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}
+
+/* Status Styling */
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 13px;
+  text-align: center;
+  min-width: 80px; /* Ensure consistent width for status badges */
+}
+
+.status-pending {
+  background-color: #ff9800;
+  color: white;
+}
+
+.status-approved {
+  background-color: #4caf50;
+  color: white;
+}
+
+.status-rejected {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Button Group Styling */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Button Styling */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}

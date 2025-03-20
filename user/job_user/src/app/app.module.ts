@@ -36,7 +36,7 @@ import { FAQComponent } from './components/faq/faq.component';
 import { TermAndConditionsComponent } from './components/term&conditions/term&conditions.component';
 import { PolicyComponent } from './components/policy/policy.component';
 import { EmployerProfileComponent } from './components/employer/employer-profile/employer-profile.component';
-import { EmployerPostJobComponent } from './components/employer/employer-post-job/employer-post-job.component';
+import { EmployerListApplicationComponent } from './components/employer/employer-list-application/employer-list-application.component';
 import { EmployerListCandidateComponent } from './components/employer/employer-list-candidate/employer-list-candidate.component';
 import { EmployerJobsComponent } from './components/employer/employer-jobs/employer-jobs.component';
 import { EmployerShortListCandidateComponent } from './components/employer/employer-shortlist-candidate/employer-shortlist-candidate.component';
@@ -64,6 +64,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
+import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +94,7 @@ import { CalendarModule } from 'primeng/calendar';
     /////////////////
     EmployerRoot,
     EmployerProfileComponent,
-    EmployerPostJobComponent,
+    EmployerListApplicationComponent,
     EmployerListCandidateComponent,
     EmployerJobsComponent,
     EmployerShortListCandidateComponent,
@@ -117,6 +119,7 @@ import { CalendarModule } from 'primeng/calendar';
             TimeAgoPipe
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -132,7 +135,8 @@ import { CalendarModule } from 'primeng/calendar';
     DropdownModule,
     InputNumberModule,
     CalendarModule,
-    EditorModule
+    EditorModule,
+    TooltipModule
   ],
   providers: [
     UserService,
