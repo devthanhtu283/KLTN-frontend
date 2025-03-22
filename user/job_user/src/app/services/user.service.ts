@@ -82,4 +82,13 @@ export class UserService {
         + 'seeker/upload', formData, { responseType: 'text' }));
     } 
 
+    async getReceiverIdsByUserId(id: number): Promise<any> {
+        return await lastValueFrom(this.httpClient.get(this.baseUrl.getUrlUser()
+        + 'chat/getReceiverIdsByUserId/' + id));
+    }
+    async getMessagesBetweenUsers(senderId: number, receiverId: number): Promise<any> {
+        return await lastValueFrom(this.httpClient.get(this.baseUrl.getUrlUser()
+        + 'chat/getMessagesBetweenUsers/' + senderId + '/' + receiverId));
+    }
+
 }

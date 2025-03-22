@@ -66,6 +66,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
 import { RouterModule } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
+import { WebSocketService } from './services/webSocket.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,7 +147,8 @@ import { TooltipModule } from 'primeng/tooltip';
     MessageService,
     DatePipe,
     JobService,
-    ApplicationService
+    ApplicationService,
+    WebSocketService
   ],
   bootstrap: [AppComponent]
 })
