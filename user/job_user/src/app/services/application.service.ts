@@ -76,5 +76,23 @@ export class ApplicationService {
       return await lastValueFrom(this.httpClient.post(this.baseUrl.getUrlApplication()
       + 'create-event', meeting));
     }
+
+    async saveInterview(interview: any): Promise<any> {
+      return await lastValueFrom(this.httpClient.post(this.baseUrl.getUrlApplication()
+      + 'save-interview', interview));
+    }
+
+    async listInterviewOfEmployer(employerId: number, currentPage: number): Promise<any> {
+      return await lastValueFrom(this.httpClient.get(`${this.baseUrl.getUrlApplication()}list-interviews-of-employer?employerId=${employerId}&page=${currentPage}`));
+    }
+
+    async listInterviewOfSeeker(seekerId: number, currentPage: number): Promise<any> {
+      return await lastValueFrom(this.httpClient.get(`${this.baseUrl.getUrlApplication()}list-interviews-of-seeker?seekerId=${seekerId}&page=${currentPage}`));
+    }
+
+    async update(interview: any): Promise<any> {
+      return await lastValueFrom(this.httpClient.put(this.baseUrl.getUrlApplication()
+      + 'update-interview', interview));
+    }
   
 }
