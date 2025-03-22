@@ -208,6 +208,17 @@ createEvent(eventData?: any) {
               .then((res) => {
                 this.application = res['data'];
                 console.log(this.applicationId);
+                let interview = {
+                  applicationId: this.applicationId,
+                  scheduledAt: eventData.startDateTime,
+                  interviewLink: this.meetLink,
+                  status: 1,
+                }
+                this.applicationService.saveInterview(interview).then(
+                  (res) => {
+                    console.log("Lưu interview: " + res);
+                  }
+                )
                 // Sau đó đi tìm seeker dựa vào application
                 if (this.application) {
                   this.jobService.findById(this.application.jobId).then(
@@ -288,7 +299,7 @@ createEvent(eventData?: any) {
                 }
               });
              
-              alert("🎉 Sự kiện đã được tạo thành công!\nGoogle Meet Link: " + this.meetLink);
+              // alert("🎉 Sự kiện đã được tạo thành công!\nGoogle Meet Link: " + this.meetLink);
           } else {
               alert("❌ Sự kiện đã được tạo nhưng không có Google Meet link.");
           }

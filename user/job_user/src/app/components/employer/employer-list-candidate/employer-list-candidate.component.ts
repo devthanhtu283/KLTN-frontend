@@ -70,13 +70,18 @@ export class EmployerListCandidateComponent implements OnInit {
   }
 
   loadData(): void {
+    const pageSize = 5; 
     this.applicationService
       .findByEmployerId(this.user.id, this.currentPage, this.status)
       .then((res) => {
-        this.applications = res['data']['content'];
+        const allApplications = res['data']['content']; 
         this.totalApplications = res['data']['totalElements'];
-        this.totalPages = res['data']['totalPages'];
-        this.pageSize = res['data']['size'];
+        this.totalPages = Math.ceil(this.totalApplications / pageSize); 
+        this.pageSize = pageSize;
+  
+        const startIndex = this.currentPage * pageSize;
+        const endIndex = startIndex + pageSize;
+        this.applications = allApplications.slice(startIndex, endIndex); 
       });
     this.applicationService
       .findByEmployerId(this.user.id, this.currentPage, 3)
